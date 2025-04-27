@@ -62,8 +62,8 @@ export default function Home() {
         {/* Navigation */}
         <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
           <a href="#" className="hover:text-black">Home</a>
-          <a href="#" className="hover:text-black">Pages</a>
-          <a href="#" className="hover:text-black">Services</a>
+          <a href="#grafico" className="hover:text-black">Diseño</a>
+          <a href="#ti" className="hover:text-black">TI</a>
           <a href="#" className="hover:text-black">Blog</a>
           <a href="#" className="hover:text-black">Contact</a>
         </nav>
@@ -212,14 +212,70 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16" id="grafico">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Why Choose Us</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Diseño Grafico</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Complete SEO Solution
+            Crea una diferencia con tu marca
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Addressing complicated digital tech challenges with customized solutions to streamline processes and improve.
+            Diferencia tu marca con un diseño único y atractivo que resuene con tu audiencia. Nuestros servicios de diseño están diseñados para ayudarte a destacar en un mercado competitivo.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-purple-100 p-4 rounded-full mb-4">
+                <i class="fa-solid fa-pen-ruler text-3xl text-green-600"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Logos</h3>
+              <p className="text-gray-600 text-sm">
+                Diseña un logotipo único y memorable que represente la esencia de tu marca y atraiga a tu público objetivo.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-yellow-100 p-4 rounded-full mb-4">
+                <i class="fa-solid fa-palette text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Marca</h3>
+              <p className="text-gray-600 text-sm">
+                Desarrolla una identidad de marca sólida y coherente que resuene con tu audiencia y genere confianza.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-green-100 p-4 rounded-full mb-4">
+                <i class="fa-solid fa-ruler-combined text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño de Landing Page</h3>
+              <p className="text-gray-600 text-sm">
+                Crea páginas de destino atractivas y optimizadas para la conversión que impulsen el compromiso del usuario.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-orange-100 p-4 rounded-full mb-4">
+                <i class="fa-solid fa-rectangle-ad text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño Publicitario</h3>
+              <p className="text-gray-600 text-sm">
+                Diseña anuncios atractivos y efectivos que capten la atención de tu audiencia y generen conversiones.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+     
+      <section className="py-16" id="ti">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios TI</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Soluciones de TI Completas
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Abordando desafíos tecnológicos digitales complicados con soluciones personalizadas para optimizar procesos y mejorar.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -230,45 +286,39 @@ export default function Home() {
                   <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Keyword Optimization Plan</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Landing Pages</h3>
               <p className="text-gray-600 text-sm">
-                Create a keyword strategy to enhance search visibility and improve targeted traffic to your website.
+                Creación de páginas de destino optimizadas para la conversión y la captación de clientes potenciales.
               </p>
             </div>
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
-                <svg className="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 1a2 2 0 012 2v1h3l1 2h2a2 2 0 012 2v3h-2l-1 2h-3v1a2 2 0 01-4 0v-1h-3l-1-2H2V8a2 2 0 012-2h2l1-2h3V3a2 2 0 012-2z"/>
-                </svg>
+                <i class="fab fa-shopify text-green-600 text-3xl"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Individualized SEO Strategy</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">E-Commerce</h3>
               <p className="text-gray-600 text-sm">
-                Tailor a personalized SEO strategy to meet your specific business needs and improve search rankings.
+                Desarrollo de tu comercio electrónico con Shopify para maximizar las ventas en línea.
               </p>
             </div>
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.896 1.514 8.298L12 18.896l-7.45 4.604 1.514-8.298L0 9.306l8.332-1.151z"/>
-                </svg>
+                <i class="fa-solid fa-blog text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Analysis</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Blog</h3>
               <p className="text-gray-600 text-sm">
-                Analyze SEO performance with detailed metrics to continually improve your strategies.
+                Creación de un blog optimizado para SEO que atraiga tráfico orgánico y genere leads.
               </p>
             </div>
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
-                <svg className="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 13h2v-2H3v2zm4 0h2V7H7v6zm4 0h2V3h-2v10zm4 0h2V5h-2v8zm4 0h2V9h-2v4z"/>
-                </svg>
+                <i class="fa-solid fa-scroll text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Strategy</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Web Scraping</h3>
               <p className="text-gray-600 text-sm">
-                Develop a compelling content plan that supports SEO efforts and drives more organic traffic.
+                Extracción de datos de sitios web para análisis y toma de decisiones informadas.
               </p>
             </div>
 
