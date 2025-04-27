@@ -16,7 +16,6 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Imkt",
   description: "Empresa 100% Mexicana líder en su ramo.",
-  viewport: "width=device-width, initial-scale=1.0",
   icons: {
     icon: "/logo_svg.svg", // Mejor si usas un .ico o un .png pequeño aquí
   },
