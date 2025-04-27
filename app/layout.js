@@ -14,8 +14,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Landing Page",
-  description: "Create a landing page with Next.js",
+  title: "Imkt",
+  description: "Empresa 100% Mexicana líder en su ramo.",
+  viewport: "width=device-width, initial-scale=1.0",
+  icons: {
+    icon: "/logo_svg.svg", // Mejor si usas un .ico o un .png pequeño aquí
+  },
+  openGraph: {
+    title: "Imkt",
+    description: "Empresa 100% Mexicana líder en su ramo.",
+    type: "website",
+    images: [
+      {
+        url: "/logo_svg.svg",
+        width: 1200,
+        height: 630,
+        alt: "Imkt Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Imkt",
+    description: "Empresa 100% Mexicana líder en su ramo.",
+    images: ["/logo_svg.svg"],
+  },
 };
 
 export default function RootLayout({ children }) {

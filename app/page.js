@@ -1,7 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import Head from 'next/head';
 
 
 export default function Home() {
@@ -27,8 +30,58 @@ export default function Home() {
     });
   };
 
+  const handleVerMas = (index) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'center',
+      showConfirmButton: false,
+    });
+
+    switch (index) {
+      case 1:
+        Toast.fire({
+          icon: 'success',
+          title: '¡Gracias por tu interés! Te contactaremos pronto.',
+        });
+        break;
+      case 2:
+        Toast.fire({
+          icon: 'success',
+          title: '¡Gracias por tu interés! Te contactaremos pronto.',
+        });
+        break;
+      case 3:
+        Toast.fire({
+          icon: 'success',
+          title: '¡Gracias por tu interés! Te contactaremos pronto.',
+        });
+        break;
+        default:
+        Toast.fire({
+          icon: 'error',
+          title: 'Error al procesar la solicitud.',
+        });
+        break;
+      }
+  }
+
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
+
+    <Head>
+        <title>Imkt</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Empresa 100% Mexicana lider en su ramo." />
+        <meta name="twitter:site" content="website" />
+        <meta name="twitter:title" content="Imkt" />
+        <meta name="twitter:description" content="Empresa 100% Mexicana lider en su ramo."/>
+        <meta name="twitter:image" content="/logo.jpg" />
+        <meta property="og:title" content="Imkt" />
+        <meta property="og:image" content="/logo.jpg"  />
+        <meta property="og:description" content="Empresa 100% Mexicana lider en su ramo." />
+        <meta property="og:type" content="website" />
+        <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    </Head>
 
     <button
       onClick={scrollToTop}
@@ -53,10 +106,7 @@ export default function Home() {
       <header className="w-full flex justify-between items-center max-w-7xl mx-auto pt-6 px-6">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="bg-orange-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
-            SE
-          </div>
-          <span className="text-xl font-bold text-black">Seom</span>
+          <Image src={"/logo_svg.svg"} alt="Logo" width={100} height={50} />
         </div>
 
         {/* Navigation */}
@@ -226,7 +276,7 @@ export default function Home() {
             
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-pen-ruler text-3xl text-green-600"></i>
+                <i className="fa-solid fa-pen-ruler text-3xl text-green-600"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Logos</h3>
               <p className="text-gray-600 text-sm">
@@ -236,7 +286,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-palette text-3xl text-black"></i>
+                <i className="fa-solid fa-palette text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Marca</h3>
               <p className="text-gray-600 text-sm">
@@ -246,7 +296,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-ruler-combined text-3xl text-black"></i>
+                <i className="fa-solid fa-ruler-combined text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño de Landing Page</h3>
               <p className="text-gray-600 text-sm">
@@ -256,7 +306,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-rectangle-ad text-3xl text-black"></i>
+                <i className="fa-solid fa-rectangle-ad text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño Publicitario</h3>
               <p className="text-gray-600 text-sm">
@@ -294,7 +344,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
-                <i class="fab fa-shopify text-green-600 text-3xl"></i>
+                <i className="fab fa-shopify text-green-600 text-3xl"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">E-Commerce</h3>
               <p className="text-gray-600 text-sm">
@@ -304,7 +354,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-blog text-3xl text-black"></i>
+                <i className="fa-solid fa-blog text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Blog</h3>
               <p className="text-gray-600 text-sm">
@@ -314,7 +364,7 @@ export default function Home() {
 
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
-                <i class="fa-solid fa-scroll text-3xl text-black"></i>
+                <i className="fa-solid fa-scroll text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Web Scraping</h3>
               <p className="text-gray-600 text-sm">
@@ -326,75 +376,75 @@ export default function Home() {
         </div>
       </section>
 
-      <section class=" py-12">
-      <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
-        <div class="flex-1">
-          <h4 class="text-sm font-semibold text-gray-700 mb-4">Client Feedback</h4>
-          <div class="flex items-center gap-2 mb-6">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" class="w-10 h-10 rounded-full"/>
-            <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" class="w-10 h-10 rounded-full"/>
-            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" class="w-10 h-10 rounded-full"/>
-            <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
+      <section className=" py-12">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
+        <div className="flex-1">
+          <h4 className="text-sm font-semibold text-gray-700 mb-4">Client Feedback</h4>
+          <div className="flex items-center gap-2 mb-6">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full"/>
+            <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full"/>
+            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" className="w-10 h-10 rounded-full"/>
+            <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
           </div>
-          <h2 class="text-4xl font-bold leading-tight mb-6 text-black">
+          <h2 className="text-4xl font-bold leading-tight mb-6 text-black">
             Clients’ Feedback <br/> and Thoughts
           </h2>
-          <p class="text-gray-600 mb-8">
+          <p className="text-gray-600 mb-8">
             Discover what our clients have to say about their experiences with us
             and learn how our services have positively impacted their businesses.
           </p>
-          <button class="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">
+          <button className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">
             VIEW DETAILS
           </button>
         </div>
 
-        <div class="flex-1 flex flex-col gap-6">
-          <div class="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
-            <p class="text-lg mb-4 text-black">
+        <div className="flex-1 flex flex-col gap-6">
+          <div className="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
+            <p className="text-lg mb-4 text-black">
               Solicite el diseño de un sitio web y una estrategia de marketing digital
               para su empresa. El equipo de Seom fue muy profesional y cumplió con todas
               nuestras expectativas. ¡Recomiendo encarecidamente sus servicios!
             </p>
-            <div class="flex items-center justify-between border-t pt-4">
-              <div class="flex items-center gap-3">
-                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Olivia Martinez" class="w-8 h-8 rounded-full"/>
-                <span class="font-semibold text-gray-800">Olivia Martinez</span>
+            <div className="flex items-center justify-between border-t pt-4">
+              <div className="flex items-center gap-3">
+                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full"/>
+                <span className="font-semibold text-gray-800">Olivia Martinez</span>
               </div>
-              <div class="flex gap-1 text-orange-500">
+              <div className="flex gap-1 text-orange-500">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
             </div>
           </div>
 
-          <div class="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
-            <p class="text-lg mb-4 text-black">
+          <div className="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
+            <p className="text-lg mb-4 text-black">
               Una experiencia increíble con Seom. Su equipo de expertos en SEO
               nos ayudó a mejorar nuestro ranking en Google y aumentar el tráfico
               a nuestro sitio web. ¡Definitivamente volveremos a trabajar con ellos!
             </p>
-            <div class="flex items-center justify-between border-t pt-4">
-              <div class="flex items-center gap-3">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Olivia Martinez" class="w-8 h-8 rounded-full"/>
-                <span class="font-semibold text-gray-800">Olivia Martinez</span>
+            <div className="flex items-center justify-between border-t pt-4">
+              <div className="flex items-center gap-3">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full"/>
+                <span className="font-semibold text-gray-800">Olivia Martinez</span>
               </div>
-              <div class="flex gap-1 text-orange-500">
+              <div className="flex gap-1 text-orange-500">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
             </div>
           </div>
 
-          <div class="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
-            <p class="text-lg mb-4 text-black">
+          <div className="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
+            <p className="text-lg mb-4 text-black">
               Para ser mi primera experiencia con una agencia de marketing digital,
               debo decir que estoy muy satisfecho. El equipo de Seom fue muy
               profesional y cumplió con todas mis expectativas. ¡Recomiendo encarecidamente sus servicios!
             </p>
-            <div class="flex items-center justify-between border-t pt-4">
-              <div class="flex items-center gap-3">
-                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Olivia Martinez" class="w-8 h-8 rounded-full"/>
-                <span class="font-semibold text-gray-800">Olivia Martinez</span>
+            <div className="flex items-center justify-between border-t pt-4">
+              <div className="flex items-center gap-3">
+                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full"/>
+                <span className="font-semibold text-gray-800">Olivia Martinez</span>
               </div>
-              <div class="flex gap-1 text-orange-500">
+              <div className="flex gap-1 text-orange-500">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
             </div>
@@ -403,6 +453,84 @@ export default function Home() {
       </div>
     </section>
 
+    {/* Proyectos */}
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <h2 className="text-4xl font-bold mb-4 text-black">Proyectos Exitosos</h2>
+        <p className="text-gray-600 mb-12">
+          Estos son algunos de los proyectos que han marcado la diferencia para nuestros clientes.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* <!-- Proyecto 1 --> */}
+          <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="text-5xl text-orange-500 mb-6">
+              <i className="fas fa-chart-line"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-4">GrowthBoost Campaign</h3>
+            <p className="text-gray-600 mb-6">
+              Aumentamos el tráfico web de nuestro cliente en un 200% mediante estrategias SEO personalizadas.
+            </p>
+            <button className="text-orange-500 font-semibold hover:underline" onClick={() => Swal.fire("SweetAlert2 is working!")}>Ver más</button>
+          </div>
+
+          {/* <!-- Proyecto 2 --> */}
+          <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="text-5xl text-orange-500 mb-6">
+              <i className="fas fa-mobile-alt"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-4">Appify Launch</h3>
+            <p className="text-gray-600 mb-6">
+              Diseñamos y lanzamos una app móvil intuitiva que logró 50k descargas en los primeros 3 meses.
+            </p>
+            <button className="text-orange-500 font-semibold hover:underline" onClick={() => Swal.fire("SweetAlert2 is working!")}>Ver más</button>
+          </div>
+
+          {/* <!-- Proyecto 3 --> */}
+          <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="text-5xl text-orange-500 mb-6">
+              <i className="fas fa-store"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-4">E-commerce Pro</h3>
+            <p className="text-gray-600 mb-6">
+              Rediseñamos la tienda en línea de un cliente, incrementando sus ventas en un 300% en 6 meses.
+            </p>
+            <button className="text-orange-500 font-semibold hover:underline" onClick={() => Swal.fire("SweetAlert2 is working!")}>Ver más</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+      {/* FORMULARIO */}
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+          Conctáctanos
+        </h2>
+        <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+          Si tienes alguna pregunta o necesitas más información sobre nuestros servicios,
+          no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte a alcanzar tus objetivos.
+        </p>
+        <form className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Nombre</label>
+            <input type="text" id="name" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Tu nombre"/>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Correo Electrónico</label>
+            <input type="email" id="email" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Tu correo electrónico"/>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">Mensaje</label>
+            <textarea id="message" rows="4" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Escribe tu mensaje aquí..."></textarea>
+          </div>
+          <button type="submit" className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#FC9A37] transition">
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </section>
         
 
     <footer className="bg-white pt-12 pb-6 w-full">
@@ -410,7 +538,7 @@ export default function Home() {
         {/* Logo y descripción */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-orange-500 text-white font-bold rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-[#FC9A37] text-white font-bold rounded-full flex items-center justify-center">
               SE
             </div>
             <h2 className="text-xl font-bold text-black">Seom</h2>
@@ -460,7 +588,7 @@ export default function Home() {
               <i className="fab fa-facebook-f"></i>
             </a>
             <a href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
-              <i class="fa-brands fa-linkedin text-blue-600 text-4xl"></i>
+              <i className="fa-brands fa-linkedin text-blue-600 text-4xl"></i>
             </a>
             <a href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
               <i className="fab fa-youtube text-red-600 text-4xl"></i>
