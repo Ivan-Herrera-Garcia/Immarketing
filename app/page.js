@@ -34,7 +34,7 @@ export default function Inicio() {
     if (menuOpen) {
       setInterval(() => {
         setMenuOpen(false); // Cerrar el menú después de 5 segundos
-      }, 5000); // Cambia el tiempo según tus necesidades
+      }, 10000); // Cambia el tiempo según tus necesidades
     }
   }), [menuOpen]; // Dependencia para el efecto
 
@@ -74,6 +74,7 @@ export default function Inicio() {
           <a href="#ti" className="hover:text-black">TI</a>
           <a href="#proyectos" className="hover:text-black">Proyectos</a>
           <a href="#legal" className="hover:text-black">Legal</a>
+          <a href="#Finanzas" className="hover:text-black">Finanzas</a>
           <a href="#contacto" className="hover:text-black">Contacto</a>
         </nav>
 
@@ -99,6 +100,7 @@ export default function Inicio() {
           <a href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
           <a href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
           <a href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
+          <a href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
           <a href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
         </div>
       )}
@@ -203,7 +205,72 @@ export default function Inicio() {
           </div>
         </div>
       </section>
-      
+
+      <section className="py-16" id="finanzas">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios Financieros</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Asesoría financiera para tu crecimiento
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Toma decisiones informadas y estratégicas sobre tu dinero con nuestra asesoría financiera personalizada.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-blue-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-book-open text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Educación Financiera</h3>
+              <p className="text-gray-600 text-sm">
+                Aprende a gestionar tu dinero, entender conceptos clave y mejorar tu salud financiera.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-green-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-wallet text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Finanzas Personales</h3>
+              <p className="text-gray-600 text-sm">
+                Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-yellow-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-chart-line text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Estrategias de Inversión</h3>
+              <p className="text-gray-600 text-sm">
+                Identifica oportunidades y aprende a invertir de forma inteligente y segura.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-purple-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-piggy-bank text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Productos Financieros</h3>
+              <p className="text-gray-600 text-sm">
+                Conoce y compara productos como créditos, seguros, fondos, y cómo elegir el más conveniente.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-red-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-handshake-angle text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Acompañamiento en decisiones</h3>
+              <p className="text-gray-600 text-sm">
+                Asistencia personalizada para evaluar decisiones financieras clave para tu negocio o vida personal.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <section className="py-16" id="legal">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios Legales</p>
@@ -432,12 +499,13 @@ export default function Inicio() {
       <section className="py-16" id="contacto">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Conctáctanos
+            Contáctanos
           </h2>
           <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
             Si tienes alguna pregunta o necesitas más información sobre nuestros servicios,
             no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte a alcanzar tus objetivos.
           </p>
+
           <form className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Nombre</label>
@@ -451,12 +519,27 @@ export default function Inicio() {
               <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">Mensaje</label>
               <textarea id="message" rows="4" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Escribe tu mensaje aquí..."></textarea>
             </div>
-            <button type="submit" className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#FC9A37] transition">
+            <button type="submit" className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition">
               Enviar Mensaje
             </button>
+
+            {/* WhatsApp option */}
+            <div className="mt-6 text-center">
+              <p className="text-gray-600 mb-2">¿Prefieres una atención más ágil?</p>
+              <a
+                href="https://wa.me/5218701440979?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20acerca%20de%20los%20servicios%20que%20ofrecen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-green-500 text-white px-5 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
+              >
+                <i className="fab fa-whatsapp text-xl"></i>
+                Escríbenos por WhatsApp
+              </a>
+            </div>
           </form>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="bg-white pt-12 pb-6 w-full">
@@ -480,6 +563,7 @@ export default function Inicio() {
               <li><a href="#ti" className="hover:text-black">TI</a></li>
               <li><a href="#proyectos" className="hover:text-black">Proyectos</a></li>
               <li><a href="#legal" className="hover:text-black">Legal</a></li>
+              <li><a href="#finanzas" className="hover:text-black">Finanzas</a></li>
               <li><a href="#contacto" className="hover:text-black">Contacto</a></li>
             </ul>
           </div>
