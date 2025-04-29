@@ -17,7 +17,7 @@ export const metadata = {
   title: "Imkt",
   description: "Empresa 100% Mexicana líder en su ramo.",
   icons: {
-    icon: "/logo_svg.svg", // Mejor si usas un .ico o un .png pequeño aquí
+    icon: "/logo.jpg", // Mejor si usas un .ico o un .png pequeño aquí
   },
   openGraph: {
     title: "Imkt",
@@ -25,7 +25,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/logo_svg.svg",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Imkt Logo",
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Imkt",
     description: "Empresa 100% Mexicana líder en su ramo.",
-    images: ["/logo_svg.svg"],
+    images: ["/logo.jpg"],
   },
 };
 
