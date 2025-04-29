@@ -5,7 +5,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-export default function Home() {
+export default function Inicio() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -28,43 +28,7 @@ export default function Home() {
     });
   };
 
-  const handleVerMas = (index) => {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'center',
-      showConfirmButton: false,
-    });
-
-    switch (index) {
-      case 1:
-        Toast.fire({
-          icon: 'success',
-          title: '¡Gracias por tu interés! Te contactaremos pronto.',
-        });
-        break;
-      case 2:
-        Toast.fire({
-          icon: 'success',
-          title: '¡Gracias por tu interés! Te contactaremos pronto.',
-        });
-        break;
-      case 3:
-        Toast.fire({
-          icon: 'success',
-          title: '¡Gracias por tu interés! Te contactaremos pronto.',
-        });
-        break;
-      default:
-        Toast.fire({
-          icon: 'error',
-          title: 'Error al procesar la solicitud.',
-        });
-        break;
-    }
-  }
-
   const [menuOpen, setMenuOpen] = useState(false); // Estado para abrir/cerrar el menú
-
 
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
@@ -95,7 +59,7 @@ export default function Home() {
 
         {/* Navigation */}
         <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <a href="#" className="hover:text-black">Home</a>
+          <a href="#" className="hover:text-black">Inicio</a>
           <a href="#grafico" className="hover:text-black">Diseño</a>
           <a href="#ti" className="hover:text-black">TI</a>
           <a href="#proyectos" className="hover:text-black">Proyectos</a>
@@ -120,7 +84,7 @@ export default function Home() {
       {/* Menú de navegación móvil */}
       {menuOpen && (
         <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg">
-          <a href="#" className="block text-gray-700 font-medium hover:text-black">Home</a>
+          <a href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
           <a href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
           <a href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
           <a href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
@@ -166,8 +130,8 @@ export default function Home() {
         <div className="flex justify-center w-full md:w-1/2">
           <div className="rounded-full w-96 h-[500px] relative overflow-hidden">
             <img
-              src="/home.png"
-              alt="Home"
+              src="/Inicio.png"
+              alt="Inicio"
               className="object-cover h-full w-full"
             />
           </div>
@@ -484,56 +448,60 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Footer */}
       <footer className="bg-white pt-12 pb-6 w-full">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo y descripción */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-[#FC9A37] text-white font-bold rounded-full flex items-center justify-center">
-                SE
-              </div>
-              <h2 className="text-xl font-bold text-black">Seom</h2>
+            <div className="flex items-center space-x-2">
+              <Image src={"/logo_svg.svg"} alt="Logo" width={100} height={50} />
             </div>
-            <p className="text-gray-600">
-              A reputable SEO agency begins with a comprehensive analysis.
+            <p className="text-gray-600 mt-2 text-base">
+              Somos una agencia de marketing digital dedicada a ayudar a las empresas a crecer y prosperar en el mundo digital.
             </p>
           </div>
 
           {/* Links de navegación */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-black">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-black">Indice</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#" className="hover:text-black">Inicio</a></li>
+              <li><a href="#grafico" className="hover:text-black">Diseño</a></li>
+              <li><a href="#ti" className="hover:text-black">TI</a></li>
+              <li><a href="#proyectos" className="hover:text-black">Proyectos</a></li>
+              <li><a href="#legal" className="hover:text-black">Legal</a></li>
+              <li><a href="#contacto" className="hover:text-black">Contacto</a></li>
             </ul>
           </div>
 
           {/* Información de contacto */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-black">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-black">Contacto</h3>
             <ul className="space-y-2 text-gray-600">
-              <li>seomagency1234@gmail.com</li>
-              <li>+123 456 7890</li>
-              <li>421 Allen, Mexico 4233</li>
+              <li>imkt-digital@imkt.com</li>
+              <li>+52 871-116-7745</li>
+              <li>Oficina Virtual</li>
             </ul>
           </div>
 
           {/* Imagen o video */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4 text-black">Office</h3>
             <div className="rounded-lg overflow-hidden">
               <img src="https://images.unsplash.com/photo-1581090700227-1c065c66683c" alt="Office" className="w-full h-auto object-cover" />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Línea divisoria */}
         <div className="border-t mt-12 pt-6">
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">© POWERED BY SEOM</p>
+            <div className="text-gray-500 flex gap-2 items-center">© IMPULSADOS POR 
+              <i class="fa-brands fa-react text-2xl text-blue-400"></i>
+              <i class="fa-brands fa-js text-2xl text-amber-300"></i> 
+              <i class="fa-brands fa-html5 text-2xl text-red-400"></i>
+              <i class="fa-brands fa-css3 text-2xl text-blue-400"></i>
+            </div>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-facebook-f"></i>
