@@ -98,8 +98,9 @@ export default function Home() {
           <a href="#" className="hover:text-black">Home</a>
           <a href="#grafico" className="hover:text-black">Diseño</a>
           <a href="#ti" className="hover:text-black">TI</a>
-          <a href="#" className="hover:text-black">Blog</a>
-          <a href="#" className="hover:text-black">Contact</a>
+          <a href="#proyectos" className="hover:text-black">Proyectos</a>
+          <a href="#legal" className="hover:text-black">Legal</a>
+          <a href="#contacto" className="hover:text-black">Contacto</a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -122,8 +123,9 @@ export default function Home() {
           <a href="#" className="block text-gray-700 font-medium hover:text-black">Home</a>
           <a href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
           <a href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
-          <a href="#" className="block text-gray-700 font-medium hover:text-black">Blog</a>
-          <a href="#" className="block text-gray-700 font-medium hover:text-black">Contact</a>
+          <a href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
+          <a href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
+          <a href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
         </div>
       )}
 
@@ -171,8 +173,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-
 
       <section className="py-16" id="grafico">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
@@ -224,6 +224,47 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño Publicitario</h3>
               <p className="text-gray-600 text-sm">
                 Diseña anuncios atractivos y efectivos que capten la atención de tu audiencia y generen conversiones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-16" id="legal">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios Legales</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Asesoramiento legal para tu negocio
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Protege tu negocio con un asesoramiento legal sólido y profesional. No olvides que la prevención es la mejor defensa.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-purple-100 p-4 rounded-full mb-4">
+              <i class="fa-solid fa-scale-balanced text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Registro de Marca</h3>
+              <p className="text-gray-600 text-sm">
+                Protege tu marca con un registro legal que garantice su exclusividad y derechos de uso.
+              </p>
+            </div>
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-yellow-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-file-contract text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Consultoria de Marketing Juridico</h3>
+              <p className="text-gray-600 text-sm">
+                Asesoría legal para campañas publicitarias que puedan tener riesgos legales (uso de testimonios, influencers, claims publicitarios).
+              </p>
+            </div>
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-green-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-gavel text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Defensa frente a infracciones de marca</h3>
+              <p className="text-gray-600 text-sm">
+                Protección de tu marca frente a infracciones y uso indebido por parte de terceros.
               </p>
             </div>
           </div>
@@ -283,16 +324,11 @@ export default function Home() {
                 Extracción de datos de sitios web para análisis y toma de decisiones informadas.
               </p>
             </div>
-
-
-            {/* Repeat Other TI Service Cards as needed */}
-            {/* ... */}
-
           </div>
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-12" id="testimonios">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
           <div className="flex-1">
             <h4 className="text-sm font-semibold text-gray-700 mb-4">Client Feedback</h4>
@@ -331,14 +367,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* More testimonials */}
           </div>
         </div>
       </section>
 
-      {/* Proyectos */}
-      <section className="py-16">
+      <section className="py-16" id="proyectos">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-black"> {/* Adjusted size */}
             Proyectos Exitosos
@@ -363,7 +396,7 @@ export default function Home() {
 
             <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
-                <i class="fa-solid fa-file-lines"></i>
+                <i className="fa-solid fa-file-lines"></i>
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-black">Web Scraper de Productos Deportivos</h3>
               <p className="text-gray-600 mb-6">
@@ -408,7 +441,7 @@ export default function Home() {
             {/* <!-- Proyecto 3 --> */}
             <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
-                <i class="fa-solid fa-shop"></i>
+                <i className="fa-solid fa-shop"></i>
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-black">E-commerce</h3>
               <p className="text-gray-600 mb-6">
@@ -422,7 +455,7 @@ export default function Home() {
       </section>
 
       {/* FORMULARIO */}
-      <section className="py-16">
+      <section className="py-16" id="contacto">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             Conctáctanos
