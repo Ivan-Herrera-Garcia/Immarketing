@@ -17,7 +17,7 @@ export const metadata = {
   title: "Imkt",
   description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
   icons: {
-    icon: "/logo_svg.png", // Usa aquí un PNG si quieres usar el logo.svg convertido
+    icon: "/logo_svg.svg", // Usa aquí un PNG si quieres usar el logo.svg convertido
   },
   openGraph: {
     title: "Imkt",
@@ -26,8 +26,8 @@ export const metadata = {
     images: [
       {
         url: "/logo_svg.png", // Este debe ser tu logo convertido a PNG y con buen tamaño (ej. 1200x630)
-        width: 1200,
-        height: 630,
+        width: 800,
+        height: 600,
         alt: "Imkt Logo",
       },
     ],
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Imkt",
     description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
-    images: ["/logo_svg.png"],
+    images: ["/logo_svg.png", "/logo_svg.svg"],
   },
 };
 

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import Head from 'next/head';
 
 export default function Inicio() {
   const [visible, setVisible] = useState(false);
@@ -43,6 +44,32 @@ export default function Inicio() {
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       {/* Button Scroll to Top */}
+      <Head>
+        <link rel="icon" href="/logo_svg.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo_svg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
+        <meta property="og:title" content="Imkt" />
+        <meta property="og:description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
+        <meta property="og:image" content="/logo_svg.png" />
+        <meta property="og:url" content="https://imkt.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Imkt" />
+        <meta name="twitter:description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
+        <meta name="twitter:image" content="/logo_svg.png" />
+        <meta name="twitter:site" content="@imkt" />
+        <meta name="twitter:creator" content="@imkt" />
+        <meta name="theme-color" content="#fdf2ed" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="Imkt" />
+        <meta name="apple-mobile-web-app-title" content="Imkt" />
+        <meta name="msapplication-TileColor" content="#fdf2ed" />
+        <meta name="msapplication-TileImage" content="/logo_svg.png" />
+      </Head>
+
+
       <button
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg transition-all ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -597,14 +624,14 @@ export default function Inicio() {
               <i class="fa-brands fa-css3 text-2xl text-blue-400"></i>
             </div>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fa-brands fa-linkedin text-blue-600 text-4xl"></i>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
-                <i className="fab fa-youtube text-red-600 text-4xl"></i>
+              <a href="https://www.instagram.com/im_marketing_oficial" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+                <i className="fab fa-instagram text-fuchsia-800 text-4xl"></i>
               </a>
             </div>
           </div>
