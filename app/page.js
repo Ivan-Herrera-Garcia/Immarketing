@@ -30,6 +30,16 @@ export default function Inicio() {
 
   const [menuOpen, setMenuOpen] = useState(false); // Estado para abrir/cerrar el menú
 
+  useEffect(() => {
+    if (menuOpen) {
+      setInterval(() => {
+        setMenuOpen(false); // Cerrar el menú después de 5 segundos
+      }, 5000); // Cambia el tiempo según tus necesidades
+    }
+  }), [menuOpen]; // Dependencia para el efecto
+
+
+
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       {/* Button Scroll to Top */}
@@ -83,7 +93,7 @@ export default function Inicio() {
 
       {/* Menú de navegación móvil */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg">
+        <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg z-50">
           <a href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
           <a href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
           <a href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
@@ -128,9 +138,9 @@ export default function Inicio() {
 
         {/* Right Image */}
         <div className="flex justify-center w-full md:w-1/2">
-          <div className="rounded-full w-96 h-[500px] relative overflow-hidden">
+          <div className="rounded-full w-60 h-40 sm:w-72 sm:h-52 md:w-80 md:h-64 lg:w-96 lg:h-72 relative overflow-hidden">
             <img
-              src="/Inicio.png"
+              src="/home.png"
               alt="Inicio"
               className="object-cover h-full w-full"
             />
