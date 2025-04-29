@@ -15,17 +15,17 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Imkt",
-  description: "Empresa 100% Mexicana líder en su ramo.",
+  description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
   icons: {
-    icon: "/logo.jpg", // Mejor si usas un .ico o un .png pequeño aquí
+    icon: "/logo_svg.png", // Usa aquí un PNG si quieres usar el logo.svg convertido
   },
   openGraph: {
     title: "Imkt",
-    description: "Empresa 100% Mexicana líder en su ramo.",
+    description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
     type: "website",
     images: [
       {
-        url: "/logo.jpg",
+        url: "/logo_svg.png", // Este debe ser tu logo convertido a PNG y con buen tamaño (ej. 1200x630)
         width: 1200,
         height: 630,
         alt: "Imkt Logo",
@@ -35,8 +35,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Imkt",
-    description: "Empresa 100% Mexicana líder en su ramo.",
-    images: ["/logo.jpg"],
+    description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
+    images: ["/logo_svg.png"],
   },
 };
 
