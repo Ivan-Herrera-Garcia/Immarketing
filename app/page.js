@@ -42,10 +42,65 @@ export default function Inicio() {
   const [email, setEmail] = useState('');
   const [servicio, setServicio] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [formularioEnviado, setFormularioEnviado] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (nombre.length < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El nombre debe tener al menos 3 caracteres.',
+      });
+    }
+
+    if (email.length < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El email debe tener al menos 3 caracteres.',
+      });
+    }
+
+    if (!email.includes("@")) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El email debe ser un correo electrónico válido.',
+      });
+    }
+
+    if (mensaje.length < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El mensaje debe tener al menos 3 caracteres.',
+      });
+    }
+
+    if (formularioEnviado) {
+      return;
+    } else {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "info",
+        title: "Enviando solicitud...",
+        text: "Por favor, espera un momento.",
+      });
+    }
+
+    setFormularioEnviado(true);
     const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje}`;
 
     try {
@@ -77,6 +132,7 @@ export default function Inicio() {
             title: "Solicitud enviada con éxito",
             text: "Nos pondremos en contacto contigo pronto.",
           });
+          setFormularioEnviado(false);
           setNombre('');
           setEmail('');
           setServicio('');
@@ -743,7 +799,7 @@ export default function Inicio() {
               <button onClick={handleSubmit}
                 className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition"
               >
-                Enviar Mensaje
+                Enviar Solicitud
               </button>
             </div>
 
