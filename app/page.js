@@ -151,6 +151,53 @@ export default function Inicio() {
         </div>
       </main>
 
+      <section className="py-16" id="marketing">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Marketing</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Impulsa tu negocio con estrategias efectivas
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Ofrecemos soluciones integrales de marketing para llevar tu negocio al siguiente nivel.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            {[
+              "Capacitaciones de marketing con tu tema de interés",
+              "Consultoría para la optimización de tu negocio",
+              "Reportes de análisis de competencia",
+              "Campañas en Meta Ads",
+              "Gestión de TikTok Studio",
+              "Campañas en Google Ads",
+              "Planeación de contenido para redes sociales",
+              "Reporte de impulso para tu negocio",
+              "SEO básico y complejo",
+              "Mejora de herramientas para medios de contacto",
+              "Apoyo en acuerdos comerciales"
+            ].map((servicio, index) => (
+              <div key={index} className="bg-white border rounded-2xl p-6 shadow hover:shadow-xl transition-all">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  {servicio}
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Servicio personalizado según tus necesidades y objetivos de negocio.
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 bg-white border rounded-2xl p-6 shadow hover:shadow-xl transition-all">
+            <p className="text-md text-gray-700">
+              ¿Quieres algo diferente?
+              <span className="block mt-2 font-medium text-blue-600">
+                Puedes crear tu propio paquete personalizado o contratar uno de los paquetes predefinidos.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+
       <section className="py-16" id="grafico">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Diseño Gráfico</p>
@@ -201,6 +248,62 @@ export default function Inicio() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño Publicitario</h3>
               <p className="text-gray-600 text-sm">
                 Diseña anuncios atractivos y efectivos que capten la atención de tu audiencia y generen conversiones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-16" id="audiovisual">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Edición de Video</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Creamos tu contenido audiovisual
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Mejora la calidad de tu contenido audiovisual con nuestros servicios de edición y producción.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-purple-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-video text-3xl text-green-600"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Edición de Video General</h3>
+              <p className="text-gray-600 text-sm">
+                Edición de videos para redes sociales, YouTube y otros formatos digitales.
+              </p>
+            </div>
+
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-yellow-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-film text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Postproducción Profesional</h3>
+              <p className="text-gray-600 text-sm">
+                Servicios de postproducción que incluyen corrección de color, efectos visuales y edición de sonido.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-green-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-calendar-days text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Eventos y Proyectos Personales</h3>
+              <p className="text-gray-600 text-sm">
+                Eres un creador de contenido y necesitas ayuda con la edición de tus videos personales o de eventos.
+              </p>
+            </div>
+
+            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              <div className="bg-orange-100 p-4 rounded-full mb-4">
+                <i className="fa-solid fa-photo-film text-3xl text-black"></i>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Videos Corporativos y Educativos</h3>
+              <p className="text-gray-600 text-sm">
+                Producción y edición de videos corporativos, tutoriales y contenido educativo.
               </p>
             </div>
           </div>
