@@ -4,7 +4,6 @@ import Image from 'next/image';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import Head from 'next/head';
 
 export default function Inicio() {
   const [visible, setVisible] = useState(false);
@@ -44,31 +43,6 @@ export default function Inicio() {
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       {/* Button Scroll to Top */}
-      <Head>
-        <link rel="icon" href="/logo_svg.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo_svg.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
-        <meta property="og:title" content="Imkt" />
-        <meta property="og:description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
-        <meta property="og:image" content="/logo_svg.png" />
-        <meta property="og:url" content="https://imkt.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Imkt" />
-        <meta name="twitter:description" content="Imkt te ofrece una amplia gama de servicios para tu empresa." />
-        <meta name="twitter:image" content="/logo_svg.png" />
-        <meta name="twitter:site" content="@imkt" />
-        <meta name="twitter:creator" content="@imkt" />
-        <meta name="theme-color" content="#fdf2ed" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="Imkt" />
-        <meta name="apple-mobile-web-app-title" content="Imkt" />
-        <meta name="msapplication-TileColor" content="#fdf2ed" />
-        <meta name="msapplication-TileImage" content="/logo_svg.png" />
-      </Head>
-
 
       <button
         onClick={scrollToTop}
@@ -310,7 +284,7 @@ export default function Inicio() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
-              <i class="fa-solid fa-scale-balanced text-3xl text-black"></i>
+              <i className="fa-solid fa-scale-balanced text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Registro de Marca</h3>
               <p className="text-gray-600 text-sm">
@@ -618,10 +592,10 @@ export default function Inicio() {
         <div className="border-t mt-12 pt-6">
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-500 flex gap-2 items-center">© IMPULSADOS POR 
-              <i class="fa-brands fa-react text-2xl text-blue-400"></i>
-              <i class="fa-brands fa-js text-2xl text-amber-300"></i> 
-              <i class="fa-brands fa-html5 text-2xl text-red-400"></i>
-              <i class="fa-brands fa-css3 text-2xl text-blue-400"></i>
+              <i className="fa-brands fa-react text-2xl text-blue-400"></i>
+              <i className="fa-brands fa-js text-2xl text-amber-300"></i> 
+              <i className="fa-brands fa-html5 text-2xl text-red-400"></i>
+              <i className="fa-brands fa-css3 text-2xl text-blue-400"></i>
             </div>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
