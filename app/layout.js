@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
           content="Imkt te ofrece una amplia gama de servicios para tu empresa."
         />
         <link rel="icon" href="/logo_svg.svg" />
-        <link rel="apple-touch-icon" href="https://immarketing.netlify.app/logo_svg.png" />
+        <link rel="apple-touch-icon" href="https://immarketing.netlify.app/home.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         <meta property="og:title" content="Imkt" />
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://immarketing.netlify.app/" />
-        <meta property="og:image" content="https://immarketing.netlify.app/logo_svg.png" />
+        <meta property="og:image" content="https://immarketing.netlify.app/home.png" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Imkt" />
@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
           name="twitter:description"
           content="Imkt te ofrece una amplia gama de servicios para tu empresa."
         />
-        <meta name="twitter:image" content="https://immarketing.netlify.app/logo_svg.png" />
+        <meta name="twitter:image" content="https://immarketing.netlify.app/home.png" />
         <meta name="twitter:image:alt" content="Imkt Logo" />
         <meta name="twitter:site" content="@imkt" />
         <meta name="twitter:creator" content="@imkt" />
