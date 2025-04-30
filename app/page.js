@@ -38,7 +38,75 @@ export default function Inicio() {
     }
   }), [menuOpen]; // Dependencia para el efecto
 
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [servicio, setServicio] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje}`;
+
+    try {
+      try {
+        const response = await fetch('/api/crear-tarea', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contenido })
+        });
+    
+        const resultado = await response.json();
+        console.log('Tarea creada:', resultado);
+        console.log('Response:', response);
+  
+        if (response.ok) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Solicitud enviada con éxito",
+            text: "Nos pondremos en contacto contigo pronto.",
+          });
+          setNombre('');
+          setEmail('');
+          setServicio('');
+          setMensaje('');
+        } else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "info",
+            title: "Servicio no disponible",
+            text: "Por favor, utiliza la opción de Whatsapp para contactarnos.",
+          });
+        }
+      } catch (error) {
+        console.error('Error desde el cliente:', error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al enviar el formulario.');
+    }
+  };
 
   return (
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
@@ -70,13 +138,15 @@ export default function Inicio() {
 
         {/* Navigation */}
         <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <a href="#" className="hover:text-black">Inicio</a>
-          <a href="#grafico" className="hover:text-black">Diseño</a>
-          <a href="#ti" className="hover:text-black">TI</a>
-          <a href="#proyectos" className="hover:text-black">Proyectos</a>
-          <a href="#legal" className="hover:text-black">Legal</a>
-          <a href="#Finanzas" className="hover:text-black">Finanzas</a>
-          <a href="#contacto" className="hover:text-black">Contacto</a>
+          <a aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a>
+          <a aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a>
+          <a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a>
+          <a aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a>
+          <a aria-label='Ancla a sección de TI' href="#ti" className="hover:text-black">TI</a>
+          <a aria-label='Ancla a sección de Proyectos' href="#proyectos" className="hover:text-black">Proyectos</a>
+          <a aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a>
+          <a aria-label='Ancla a sección de Finanzas' href="#Finanzas" className="hover:text-black">Finanzas</a>
+          <a aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -96,13 +166,15 @@ export default function Inicio() {
       {/* Menú de navegación móvil */}
       {menuOpen && (
         <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg z-50">
-          <a href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
-          <a href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
-          <a href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
-          <a href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
-          <a href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
-          <a href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
-          <a href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
+          <a aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
+          <a aria-label='Ancla a sección de Marketing' href="#marketing" className="block text-gray-700 font-medium hover:text-black">Marketing</a>
+          <a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="block text-gray-700 font-medium hover:text-black">Audiovisual</a>
+          <a aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
+          <a aria-label='Ancla a sección de TI' href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
+          <a aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
+          <a aria-label='Ancla a sección de Legal' href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
+          <a aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
+          <a aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
         </div>
       )}
 
@@ -610,22 +682,70 @@ export default function Inicio() {
             no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte a alcanzar tus objetivos.
           </p>
 
-          <form className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Nombre</label>
-              <input type="text" id="name" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Tu nombre" />
+          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <div className="max-w-xl mx-auto">
+              <div className="mb-4">
+                <label htmlFor="nombre" className="block text-gray-700 font-semibold mb-2">Nombre</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Correo Electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder="Tu correo electrónico"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="servicio" className="block text-gray-700 font-semibold mb-2">Servicio a solicitar</label>
+                <select
+                  id="servicio"
+                  value={servicio}
+                  onChange={(e) => setServicio(e.target.value)}
+                  className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  required
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Audiovisual">Audiovisual</option>
+                  <option value="Diseño">Diseño</option>
+                  <option value="TI">TI</option>
+                  <option value="Proyectos">Proyectos</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Finanzas">Finanzas</option>
+                  <option value="No sé mi servicio">No sé mi servicio</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="mensaje" className="block text-gray-700 font-semibold mb-2">Mensaje</label>
+                <textarea
+                  id="mensaje"
+                  value={mensaje}
+                  onChange={(e) => setMensaje(e.target.value)}
+                  rows={4}
+                  className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder="Escribe tu mensaje aquí..."
+                  required
+                />
+              </div>
+              <button onClick={handleSubmit}
+                className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition"
+              >
+                Enviar Mensaje
+              </button>
             </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Correo Electrónico</label>
-              <input type="email" id="email" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Tu correo electrónico" />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">Mensaje</label>
-              <textarea id="message" rows="4" className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Escribe tu mensaje aquí..."></textarea>
-            </div>
-            <button type="submit" className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition">
-              Enviar Mensaje
-            </button>
 
             {/* WhatsApp option */}
             <div className="mt-6 text-center">
@@ -640,7 +760,7 @@ export default function Inicio() {
                 Escríbenos por WhatsApp
               </a>
             </div>
-          </form>
+          </div>
         </div>
       </section>
 
@@ -662,13 +782,15 @@ export default function Inicio() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-black">Indice</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="hover:text-black">Inicio</a></li>
-              <li><a href="#grafico" className="hover:text-black">Diseño</a></li>
-              <li><a href="#ti" className="hover:text-black">TI</a></li>
-              <li><a href="#proyectos" className="hover:text-black">Proyectos</a></li>
-              <li><a href="#legal" className="hover:text-black">Legal</a></li>
-              <li><a href="#finanzas" className="hover:text-black">Finanzas</a></li>
-              <li><a href="#contacto" className="hover:text-black">Contacto</a></li>
+              <li><a aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a></li>
+              <li><a aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a></li>
+              <li><a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a></li>
+              <li><a aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a></li>
+              <li><a aria-label='Ancla a sección de TI'  href="#ti" className="hover:text-black">TI</a></li>
+              <li><a aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">Proyectos</a></li>
+              <li><a aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a></li>
+              <li><a aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">Finanzas</a></li>
+              <li><a aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a></li>
             </ul>
           </div>
 
