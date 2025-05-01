@@ -242,16 +242,14 @@ export default function Inicio() {
         <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black">
         Agencia de marketing digital <br />
         y soluciones que potencian tu{" "}
-        <span className="bg-black text-white px-2">negocio</span>
-      </h1>
+          <span className="bg-black text-white px-2">negocio</span>
+        </h1>
 
-      <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
-        Servicios con profesionistas de diversas áreas como: <br />
-        Finanzas, legal, TI, diseño gráfico y edición de video. <br />
-        Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
-      </p>
-
-
+        <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
+          Servicios con profesionistas de diversas áreas como: <br />
+          Finanzas, legal, TI, diseño gráfico y edición de video. <br />
+          Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
+        </p>
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
             <button className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
@@ -887,13 +885,13 @@ export default function Inicio() {
               <i className="fa-brands fa-css3 text-2xl text-blue-400"></i>
             </div>
             <div className="flex gap-4">
-              <a href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-label='Enlace a sitio web en Facebook' href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-label='Enlace a sitio web en Linkedin' href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fa-brands fa-linkedin text-blue-600 text-4xl"></i>
               </a>
-              <a href="https://www.instagram.com/im_marketing_oficial" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-label='Enlace a sitio web en Instagram' href="https://www.instagram.com/im_marketing_oficial" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-instagram text-fuchsia-800 text-4xl"></i>
               </a>
             </div>
