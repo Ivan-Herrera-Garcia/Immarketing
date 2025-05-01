@@ -239,16 +239,18 @@ export default function Inicio() {
       <main className="flex flex-col-reverse md:flex-row items-center gap-12 max-w-7xl mx-auto row-start-2">
         {/* Left Content */}
         <div className="text-center md:text-left space-y-6 w-full md:w-1/2">
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-black">
-            Agencia de marketing digital <br/>
-            y soluciones que potencian tu
-            <span className="bg-black text-white px-2">negocio</span>
-          </h1>
-          <p className="text-black text-lg">
-            Servicios con profesionistas de diversas áreas como: <br/>
-            Finanzas, legal, TI, diseño grafico y edición de video. <br/>
-            Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
-          </p>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black">
+        Agencia de marketing digital <br />
+        y soluciones que potencian tu{" "}
+        <span className="bg-black text-white px-2">negocio</span>
+      </h1>
+
+      <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
+        Servicios con profesionistas de diversas áreas como: <br />
+        Finanzas, legal, TI, diseño gráfico y edición de video. <br />
+        Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
+      </p>
+
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
