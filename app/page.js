@@ -278,7 +278,7 @@ export default function Inicio() {
         <div className="flex justify-center w-full md:w-1/2">
           <div className="opacity-60 rounded-3xl w-60 h-40 sm:w-72 sm:h-52 md:w-80 md:h-64 lg:w-96 lg:h-72 relative overflow-hidden">
             <img
-              src="/preview.jpg"
+              src="/logo_azul.jpg"
               alt="Inicio"
               className="object-cover h-full w-full"
             />
