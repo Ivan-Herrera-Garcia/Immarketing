@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
           name="description"
           content="Imkt te ofrece una amplia gama de servicios para tu empresa."
         />
-        <link rel="icon" href="/preview.jpg" />
+        <link rel="icon" href="/logo_svg.svg" />
         <link rel="apple-touch-icon" href="https://immarketing.netlify.app/preview.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
