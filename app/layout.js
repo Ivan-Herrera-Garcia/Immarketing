@@ -44,34 +44,44 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning="true" data-lt-installed="true">
       <head>
-        <title>Imkt | Servicios para tu empresa</title>
+        <title>Immarketing | Marketing | TI | Legal | Finanzas | Diseño grafico | Audiovisual</title>
         <meta
           name="description"
-          content="Imkt te ofrece una amplia gama de servicios para tu empresa."
+          content="Servicios de marketing, TI, legal, finanzas, diseño gráfico y audiovisual para tu empresa.
+          Imkt te ofrece una amplia gama de servicios para tu empresa. Con servicios exclusivos y personalizados, 
+          somos tu aliado ideal para el crecimiento y éxito de tu negocio. Ubicados en Torreón, Coahuila, México."
         />
         <link rel="icon" href="/logo_svg.svg" />
         <link rel="apple-touch-icon" href="https://immarketing.netlify.app/preview.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <meta property="og:title" content="Imkt" />
+        <meta property="og:title" content="Immarketing | Marketing | TI | Legal | Finanzas | Diseño grafico | Audiovisual" />
         <meta
           property="og:description"
-          content="Imkt te ofrece una amplia gama de servicios para tu empresa."
+          content="Servicios de marketing, TI, legal, finanzas, diseño gráfico y audiovisual para tu empresa.
+          Imkt te ofrece una amplia gama de servicios para tu empresa. Con servicios exclusivos y personalizados, 
+          somos tu aliado ideal para el crecimiento y éxito de tu negocio. Ubicados en Torreón, Coahuila, México."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://immarketing.netlify.app/" />
         <meta property="og:image" content="https://immarketing.netlify.app/preview.jpg" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Imkt" />
+        <meta name="twitter:title" content="Immarketing | Marketing | TI | Legal | Finanzas | Diseño grafico | Audiovisual" />
         <meta
           name="twitter:description"
-          content="Imkt te ofrece una amplia gama de servicios para tu empresa."
+          content="Servicios de marketing, TI, legal, finanzas, diseño gráfico y audiovisual para tu empresa.
+          Imkt te ofrece una amplia gama de servicios para tu empresa. Con servicios exclusivos y personalizados, 
+          somos tu aliado ideal para el crecimiento y éxito de tu negocio. Ubicados en Torreón, Coahuila, México."
         />
         <meta name="twitter:image" content="https://immarketing.netlify.app/preview.jpg" />
         <meta name="twitter:image:alt" content="Imkt Logo" />
         <meta name="twitter:site" content="@imkt" />
         <meta name="twitter:creator" content="@imkt" />
+
+        <meta name="keywords" content="marketing, diseño, sitios web, 
+        legal, finanzas, audiovisual, redes sociales" />
+
       </head>
       <body 
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

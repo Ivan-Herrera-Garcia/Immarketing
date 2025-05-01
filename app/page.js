@@ -240,24 +240,31 @@ export default function Inicio() {
         {/* Left Content */}
         <div className="text-center md:text-left space-y-6 w-full md:w-1/2">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-black">
-            Grow your<br />Brand with SEO<br />
-            <span className="bg-black text-white px-2">Solutions</span>
+            Agencia de marketing digital <br/>
+            y soluciones que potencian tu
+            <span className="bg-black text-white px-2">negocio</span>
           </h1>
           <p className="text-black text-lg">
-            Boost your online presence, and attract the right audience<br />to grow your business successfully.
+            Servicios con profesionistas de diversas áreas como: <br/>
+            Finanzas, legal, TI, diseño grafico y edición de video. <br/>
+            Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
           </p>
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
             <button className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="relative z-10 text-black transition-colors duration-500 group-hover:text-white">
-                GET STARTED
+                <a href="#marketing" aria-label='Ancla a sección de Contacto'>
+                  <span>¿Cómo te ayudamos?</span>
+                </a>
               </span>
               <div className="absolute left-0 top-0 w-0 h-full bg-black transition-all duration-500 group-hover:w-full z-0"></div>
             </button>
             <button className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="flex relative z-10 text-black transition-colors duration-500 group-hover:text-white">
-                <span>HOW IT WORKS</span>
+                <a href="#contacto" aria-label='Ancla a sección de Contacto'>
+                  <span>Contáctanos</span>
+                </a>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -604,7 +611,7 @@ export default function Inicio() {
       <section className="py-12" id="testimonios">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
           <div className="flex-1">
-            <h4 className="text-sm font-semibold text-gray-700 mb-4">Client Feedback</h4>
+            <h4 className="text-sm font-semibold text-gray-700 mb-4">Resultados tangibles</h4>
             <div className="flex items-center gap-2 mb-6 flex-wrap"> {/* flex-wrap added */}
               <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full" />
               <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full" />
@@ -612,15 +619,13 @@ export default function Inicio() {
               <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> {/* Reduced text size for smaller screens */}
-              Clients’ Feedback <br /> and Thoughts
+              Testimonios de clientes <br/> satisfechos
             </h2>
             <p className="text-sm sm:text-base text-gray-600 mb-8"> {/* Added responsive text size */}
-              Discover what our clients have to say about their experiences with us
-              and learn how our services have positively impacted their businesses.
+              Conoce lo que empresarios y emprendedores dicen sobre I´m Marketing y 
+              descubre como la complementación de nuestros servicios se han acoplado 
+              a sus necesidades, presupuestos y proyecciones. 
             </p>
-            <button className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">
-              VIEW DETAILS
-            </button>
           </div>
 
           <div className="flex-1 flex flex-col gap-6">
@@ -734,8 +739,8 @@ export default function Inicio() {
             Contáctanos
           </h2>
           <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Si tienes alguna pregunta o necesitas más información sobre nuestros servicios,
-            no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte a alcanzar tus objetivos.
+            Déjanos tus datos y un asesor especializado o un experto en el área adecuada 
+            se pondrá en contacto contigo para ayudarte a encontrar la solución perfecta para impulsar tu negocio.
           </p>
 
           <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
