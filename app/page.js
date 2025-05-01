@@ -222,15 +222,15 @@ export default function Inicio() {
       {/* Menú de navegación móvil */}
       {menuOpen && (
         <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg z-50">
-          <a aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
-          <a aria-label='Ancla a sección de Marketing' href="#marketing" className="block text-gray-700 font-medium hover:text-black">Marketing</a>
-          <a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="block text-gray-700 font-medium hover:text-black">Audiovisual</a>
-          <a aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
-          <a aria-label='Ancla a sección de TI' href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
-          <a aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
-          <a aria-label='Ancla a sección de Legal' href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
-          <a aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
-          <a aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
+          <a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
+          <a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="block text-gray-700 font-medium hover:text-black">Marketing</a>
+          <a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="block text-gray-700 font-medium hover:text-black">Audiovisual</a>
+          <a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
+          <a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI' href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
+          <a aria-labelledby='Ancla a sección de Proyectos' aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
+          <a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
+          <a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
+          <a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
         </div>
       )}
 
@@ -277,7 +277,7 @@ export default function Inicio() {
         {/* Right Image */}
         <div className="flex justify-center w-full md:w-1/2">
           <div className="opacity-60 rounded-3xl w-60 h-40 sm:w-72 sm:h-52 md:w-80 md:h-64 lg:w-96 lg:h-72 relative overflow-hidden">
-            <img
+            <img loading='lazy'
               src="/logo_azul.jpg"
               alt="Inicio"
               className="object-cover h-full w-full"
@@ -844,15 +844,15 @@ export default function Inicio() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-black">Indice</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a></li>
-              <li><a aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a></li>
-              <li><a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a></li>
-              <li><a aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a></li>
-              <li><a aria-label='Ancla a sección de TI'  href="#ti" className="hover:text-black">TI</a></li>
-              <li><a aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">Proyectos</a></li>
-              <li><a aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a></li>
-              <li><a aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">Finanzas</a></li>
-              <li><a aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a></li>
+              <li><a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a></li>
+              <li><a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a></li>
+              <li><a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a></li>
+              <li><a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a></li>
+              <li><a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI'  href="#ti" className="hover:text-black">TI</a></li>
+              <li><a aria-labelledby='Ancla a sección de Proyecto' aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">Proyectos</a></li>
+              <li><a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a></li>
+              <li><a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">Finanzas</a></li>
+              <li><a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a></li>
             </ul>
           </div>
 
@@ -885,13 +885,13 @@ export default function Inicio() {
               <i className="fa-brands fa-css3 text-2xl text-blue-400"></i>
             </div>
             <div className="flex gap-4">
-              <a aria-label='Enlace a sitio web en Facebook' href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-labelledby='Enlace a sitio web en Facebook' aria-label='Enlace a sitio web en Facebook' href="https://www.facebook.com/profile.php?id=61573553276870" className="w-10 h-10 bg-blue-600 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a aria-label='Enlace a sitio web en Linkedin' href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-labelledby='Enlace a sitio web en Linkedin' aria-label='Enlace a sitio web en Linkedin' href="#" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fa-brands fa-linkedin text-blue-600 text-4xl"></i>
               </a>
-              <a aria-label='Enlace a sitio web en Instagram' href="https://www.instagram.com/im_marketing_oficial" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
+              <a aria-labelledby='Enlace a sitio web en Instagram' aria-label='Enlace a sitio web en Instagram' href="https://www.instagram.com/im_marketing_oficial" className="w-10 h-10 rounded-full border flex items-center justify-center text-white hover:bg-gray-100 transition">
                 <i className="fab fa-instagram text-fuchsia-800 text-4xl"></i>
               </a>
             </div>
