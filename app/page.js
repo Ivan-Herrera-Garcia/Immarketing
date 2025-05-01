@@ -189,7 +189,7 @@ export default function Inicio() {
       <header className="w-full flex justify-between items-center max-w-7xl mx-auto pt-6 px-6">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Image src={"/logo_svg.svg"} alt="Logo" width={100} height={50} />
+          <Image src={"/logo_svg.png"} alt="Logo" width={100} height={50} />
         </div>
 
         {/* Navigation */}
@@ -269,9 +269,9 @@ export default function Inicio() {
 
         {/* Right Image */}
         <div className="flex justify-center w-full md:w-1/2">
-          <div className="rounded-full w-60 h-40 sm:w-72 sm:h-52 md:w-80 md:h-64 lg:w-96 lg:h-72 relative overflow-hidden">
+          <div className="opacity-60 rounded-3xl w-60 h-40 sm:w-72 sm:h-52 md:w-80 md:h-64 lg:w-96 lg:h-72 relative overflow-hidden">
             <img
-              src="/home.png"
+              src="/preview.jpg"
               alt="Inicio"
               className="object-cover h-full w-full"
             />
