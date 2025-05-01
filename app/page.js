@@ -310,7 +310,7 @@ export default function Inicio() {
               "Mejora de herramientas para medios de contacto",
               "Apoyo en acuerdos comerciales"
             ].map((servicio, index) => (
-              <div key={index} className="bg-white border rounded-2xl p-6 shadow hover:shadow-xl transition-all">
+              <div key={index} className="bg-white hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 shadow hover:shadow-xl transition-all">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">
                   {servicio}
                 </h3>
@@ -321,7 +321,7 @@ export default function Inicio() {
             ))}
           </div>
 
-          <div className="mt-12 bg-white border rounded-2xl p-6 shadow hover:shadow-xl transition-all">
+          <div className="mt-12 bg-white hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 shadow hover:shadow-xl transition-all">
             <p className="text-md text-gray-700">
               ¿Quieres algo diferente?
               <span className="block mt-2 font-medium text-blue-600">
@@ -345,7 +345,7 @@ export default function Inicio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-pen-ruler text-3xl text-green-600"></i>
               </div>
@@ -356,7 +356,7 @@ export default function Inicio() {
             </div>
 
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-palette text-3xl text-black"></i>
               </div>
@@ -366,7 +366,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-ruler-combined text-3xl text-black"></i>
               </div>
@@ -376,7 +376,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-rectangle-ad text-3xl text-black"></i>
               </div>
@@ -401,7 +401,7 @@ export default function Inicio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-video text-3xl text-green-600"></i>
               </div>
@@ -412,7 +412,7 @@ export default function Inicio() {
             </div>
 
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-film text-3xl text-black"></i>
               </div>
@@ -422,7 +422,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-calendar-days text-3xl text-black"></i>
               </div>
@@ -432,7 +432,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-photo-film text-3xl text-black"></i>
               </div>
@@ -456,7 +456,7 @@ export default function Inicio() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-blue-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-book-open text-3xl text-black"></i>
               </div>
@@ -466,7 +466,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-wallet text-3xl text-black"></i>
               </div>
@@ -476,7 +476,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-chart-line text-3xl text-black"></i>
               </div>
@@ -486,7 +486,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-piggy-bank text-3xl text-black"></i>
               </div>
@@ -496,7 +496,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-red-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-handshake-angle text-3xl text-black"></i>
               </div>
@@ -520,7 +520,7 @@ export default function Inicio() {
             Protege tu negocio con un asesoramiento legal sólido y profesional. No olvides que la prevención es la mejor defensa.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
               <i className="fa-solid fa-scale-balanced text-3xl text-black"></i>
               </div>
@@ -529,7 +529,7 @@ export default function Inicio() {
                 Protege tu marca con un registro legal que garantice su exclusividad y derechos de uso.
               </p>
             </div>
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-file-contract text-3xl text-black"></i>
               </div>
@@ -538,7 +538,7 @@ export default function Inicio() {
                 Asesoría legal para campañas publicitarias que puedan tener riesgos legales (uso de testimonios, influencers, claims publicitarios).
               </p>
             </div>
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-gavel text-3xl text-black"></i>
               </div>
@@ -563,7 +563,7 @@ export default function Inicio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z" />
@@ -575,7 +575,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fab fa-shopify text-green-600 text-3xl"></i>
               </div>
@@ -584,8 +584,9 @@ export default function Inicio() {
                 Desarrollo de tu comercio electrónico con Shopify para maximizar las ventas en línea.
               </p>
             </div>
+            
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-blog text-3xl text-black"></i>
               </div>
@@ -595,7 +596,7 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="border rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-orange-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-scroll text-3xl text-black"></i>
               </div>
@@ -619,7 +620,7 @@ export default function Inicio() {
               <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> {/* Reduced text size for smaller screens */}
-              Testimonios de clientes <br/> satisfechos
+              Testimonios de clientes <br/><span className="bg-black text-white px-2">satisfechos</span>
             </h2>
             <p className="text-sm sm:text-base text-gray-600 mb-8"> {/* Added responsive text size */}
               Conoce lo que empresarios y emprendedores dicen sobre I´m Marketing y 
@@ -660,7 +661,7 @@ export default function Inicio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Adjusted grid layout */}
             {/* Project 1 */}
-            <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
                 <i className="fas fa-chart-line"></i>
               </div>
@@ -672,7 +673,7 @@ export default function Inicio() {
                 .open("https://dev-mini-crm.netlify.app/", "_blank")}>Ver sitio</button>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
                 <i className="fa-solid fa-file-lines"></i>
               </div>
@@ -717,7 +718,7 @@ export default function Inicio() {
             </div>
 
             {/* <!-- Proyecto 3 --> */}
-            <div className="bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
+            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
                 <i className="fa-solid fa-shop"></i>
               </div>
@@ -743,7 +744,7 @@ export default function Inicio() {
             se pondrá en contacto contigo para ayudarte a encontrar la solución perfecta para impulsar tu negocio.
           </p>
 
-          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+          <div className="border border-b-4 border-b-black border-r-4 border-black border-r-black max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
             <div className="max-w-xl mx-auto">
               <div className="mb-4">
                 <label htmlFor="nombre" className="block text-gray-700 font-semibold mb-2">Nombre</label>
