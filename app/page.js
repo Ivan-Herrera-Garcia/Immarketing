@@ -168,7 +168,7 @@ export default function Inicio() {
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       {/* Button Scroll to Top */}
 
-      <button
+      <button aria-labelledby='Ancla a sección de Inicio'
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg transition-all ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
           } bg-[#8B4513] hover:bg-[#5C3317] text-white`}
@@ -208,7 +208,7 @@ export default function Inicio() {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-4">
           {/* Icono de menú hamburguesa */}
-          <button
+          <button aria-label='Ancla a sección de Inicio' aria-labelledby='Ancla a sección de Inicio'
             className="p-2"
             onClick={() => setMenuOpen(!menuOpen)} // Cambiar el estado al abrir/cerrar el menú
           >
@@ -252,7 +252,7 @@ export default function Inicio() {
         </p>
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
-            <button className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
+            <button aria-label='Boton ancla a servicios' aria-labelledby='Boton ancla a servicios' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="relative z-10 text-black transition-colors duration-500 group-hover:text-white">
                 <a href="#marketing" aria-label='Ancla a sección de Contacto'>
                   <span>¿Cómo te ayudamos?</span>
@@ -260,7 +260,7 @@ export default function Inicio() {
               </span>
               <div className="absolute left-0 top-0 w-0 h-full bg-black transition-all duration-500 group-hover:w-full z-0"></div>
             </button>
-            <button className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
+            <button  aria-label='Boton ancla a contacto' aria-labelledby='Boton ancla a contacto' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="flex relative z-10 text-black transition-colors duration-500 group-hover:text-white">
                 <a href="#contacto" aria-label='Ancla a sección de Contacto'>
                   <span>Contáctanos</span>
@@ -802,7 +802,7 @@ export default function Inicio() {
                   required
                 />
               </div>
-              <button onClick={handleSubmit}
+              <button onClick={handleSubmit}  aria-label='Boton enviar formulario' aria-labelledby='Boton enviar formulario' 
                 className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition"
               >
                 Enviar Solicitud
