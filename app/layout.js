@@ -42,7 +42,7 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning="true" data-lt-installed="true">
+    <html lang="es" suppressHydrationWarning="true" data-lt-installed="true">
       <head>
         <title>Immarketing | Marketing, TI, Legal, Finanzas y Diseño</title>
         <meta
