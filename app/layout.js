@@ -13,33 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// const metadata = {
-//   title: "Imkt | Servicios para tu empresa",
-//   description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
-//   icons: {
-//     icon: "/logo_svg.svg", // Usa aquí un PNG si quieres usar el logo.svg convertido
-//   },
-//   openGraph: {
-//     title: "Imkt",
-//     description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
-//     type: "website",
-//     images: [
-//       {
-//         url: "/logo_svg.png", // Este debe ser tu logo convertido a PNG y con buen tamaño (ej. 1200x630)
-//         width: 800,
-//         height: 600,
-//         alt: "Imkt Logo",
-//       },
-//     ],
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "Imkt",
-//     description: "Imkt te ofrece una amplia gama de servicios para tu empresa.",
-//     images: ["/logo_svg.png", "/logo_svg.svg"],
-//   },
-// };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning="true" data-lt-installed="true">

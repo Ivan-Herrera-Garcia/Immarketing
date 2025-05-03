@@ -614,9 +614,9 @@ export default function Inicio() {
           <div className="flex-1">
             <h4 className="text-sm font-semibold text-gray-700 mb-4">Resultados tangibles</h4>
             <div className="flex items-center gap-2 mb-6 flex-wrap"> {/* flex-wrap added */}
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full" />
-              <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full" />
-              <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" className="w-10 h-10 rounded-full" />
+              <img loading='lazy' src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full" />
+              <img loading='lazy' src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full" />
+              <img loading='lazy' src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" className="w-10 h-10 rounded-full" />
               <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> {/* Reduced text size for smaller screens */}
@@ -638,7 +638,7 @@ export default function Inicio() {
               </p>
               <div className="flex items-center justify-between border-t pt-4">
                 <div className="flex items-center gap-3">
-                  <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full" />
+                  <img loading='lazy' src="https://randomuser.me/api/portraits/women/42.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full" />
                   <span className="font-semibold text-gray-800">Olivia Martinez</span>
                 </div>
                 <div className="flex gap-1 text-orange-500">
@@ -826,7 +826,6 @@ export default function Inicio() {
         </div>
       </section>
 
-
       {/* Footer */}
       <footer className="bg-white pt-12 pb-6 w-full">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -865,14 +864,6 @@ export default function Inicio() {
               <li>Oficina Virtual</li>
             </ul>
           </div>
-
-          {/* Imagen o video */}
-          {/* <div>
-            <h3 className="text-lg font-semibold mb-4 text-black">Office</h3>
-            <div className="rounded-lg overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1581090700227-1c065c66683c" alt="Office" className="w-full h-auto object-cover" />
-            </div>
-          </div> */}
         </div>
 
         {/* Línea divisoria */}
