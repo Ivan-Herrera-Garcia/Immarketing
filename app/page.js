@@ -609,20 +609,20 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="py-12" id="testimonios">
+      {/*<section className="py-12" id="testimonios">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
           <div className="flex-1">
             <h4 className="text-sm font-semibold text-gray-700 mb-4">Resultados tangibles</h4>
-            <div className="flex items-center gap-2 mb-6 flex-wrap"> {/* flex-wrap added */}
+            <div className="flex items-center gap-2 mb-6 flex-wrap">
               <img loading='lazy' src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full" />
               <img loading='lazy' src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full" />
               <img loading='lazy' src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" className="w-10 h-10 rounded-full" />
               <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> {/* Reduced text size for smaller screens */}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> 
               Testimonios de clientes <br/><span className="bg-black text-white px-2">satisfechos</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-8"> {/* Added responsive text size */}
+            <p className="text-sm sm:text-base text-gray-600 mb-8">
               Conoce lo que empresarios y emprendedores dicen sobre I´m Marketing y 
               descubre como la complementación de nuestros servicios se han acoplado 
               a sus necesidades, presupuestos y proyecciones. 
@@ -649,6 +649,7 @@ export default function Inicio() {
           </div>
         </div>
       </section>
+      */}
 
       <section className="py-16" id="proyectos">
         <div className="max-w-7xl mx-auto px-6 text-center">
