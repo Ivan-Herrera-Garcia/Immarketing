@@ -654,10 +654,15 @@ export default function Inicio() {
       <section className="py-16" id="proyectos">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-black"> {/* Adjusted size */}
-            Proyectos Exitosos
+            Proyectos que marcan la diferencia
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mb-12">
-            Estos son algunos de los proyectos que han marcado la diferencia para nuestros clientes.
+            Estos son algunos de nuestros proyectos destacados que reflejan nuestro compromiso con la calidad y la innovación.
+            <br />
+            Cada proyecto es una oportunidad para aprender y crecer, y estamos orgullosos de compartir estos logros con ustedes.
+            <br />
+            <span className="font-semibold text-orange-500">¡Descubre cómo podemos ayudarte a alcanzar tus metas!</span>
+            <br />
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Adjusted grid layout */}
@@ -668,7 +673,7 @@ export default function Inicio() {
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-black">Proyecto RealtyManager</h3>
               <p className="text-gray-600 mb-6">
-                Sitio web de gestión inmobiliaria que aumento la eficiencia en la administración de propiedades en un 40%.
+                Sitio web de gestión inmobiliaria, diseñado para facilitar la administración de propiedades y clientes.
               </p>
               <button className="text-orange-500 font-semibold hover:underline" onClick={() => window
                 .open("https://dev-mini-crm.netlify.app/", "_blank")}>Ver sitio</button>
