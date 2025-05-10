@@ -4,9 +4,26 @@ import Image from 'next/image';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router'
+import Head from 'next/head';
 
 export default function Inicio() {
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const [locale, setLocale] = useState(router.locale || 'Es');
+
+  useEffect(() => {
+    const handleLocaleChange = () => {
+      if (locale === 'Es') {
+        router.push(router.pathname, router.asPath, { locale: 'Es' });
+      } else
+      if (locale === 'En') {
+        router.push(router.pathname, router.asPath, { locale: 'En' });
+      }
+    };
+
+    handleLocaleChange();
+  }, [router.locale, locale]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -51,7 +68,7 @@ export default function Inicio() {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El nombre debe tener al menos 3 caracteres.',
+        text: locale == 'Es' ? 'El nombre debe tener al menos 3 caracteres.' : 'Name must be at least 3 characters long.',
       });
     }
 
@@ -59,7 +76,7 @@ export default function Inicio() {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El email debe tener al menos 3 caracteres.',
+        text: locale == 'Es' ? 'El email debe tener al menos 3 caracteres.' : 'Email must be at least 3 characters long.',
       });
     }
 
@@ -67,7 +84,7 @@ export default function Inicio() {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El email debe ser un correo electrónico válido.',
+        text: locale == 'Es' ? 'El email debe contener un "@"' : 'Email must contain an "@"',
       });
     }
 
@@ -75,7 +92,7 @@ export default function Inicio() {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El mensaje debe tener al menos 3 caracteres.',
+        text: locale == 'Es' ? 'El mensaje debe tener al menos 3 caracteres.' : 'Message must be at least 3 characters long.',
       });
     }
 
@@ -95,13 +112,13 @@ export default function Inicio() {
       });
       Toast.fire({
         icon: "info",
-        title: "Enviando solicitud...",
-        text: "Por favor, espera un momento.",
+        title: locale == 'Es' ? "Enviando..." : "Sending...",
+        text: locale == 'Es' ? "Por favor, espera." : "Please wait.",
       });
     }
 
     setFormularioEnviado(true);
-    const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje}`;
+    const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje} ${locale == 'Es' ? 'Español' : 'English'}`;
 
     try {
       try {
@@ -129,8 +146,8 @@ export default function Inicio() {
           });
           Toast.fire({
             icon: "success",
-            title: "Solicitud enviada con éxito",
-            text: "Nos pondremos en contacto contigo pronto.",
+            title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
+            text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
           });
           setFormularioEnviado(false);
           setNombre('');
@@ -151,8 +168,8 @@ export default function Inicio() {
           });
           Toast.fire({
             icon: "info",
-            title: "Servicio no disponible",
-            text: "Por favor, utiliza la opción de Whatsapp para contactarnos.",
+            title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
+            text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
           });
         }
       } catch (error) {
@@ -160,7 +177,23 @@ export default function Inicio() {
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Hubo un error al enviar el formulario.');
+      // alert('Hubo un error al enviar el formulario.');
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "error",
+        title: locale == 'Es' ? "Error" : "Error",
+        text: locale == 'Es' ? "Hubo un error al enviar el formulario." : "There was an error sending the form.",
+      });
     }
   };
 
@@ -168,11 +201,53 @@ export default function Inicio() {
     <div className="bg-[#fdf2ed] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       {/* Button Scroll to Top */}
 
-      <button aria-labelledby='Ancla a sección de Inicio'
+      <Head>
+        <title>{locale == 'Es' ? "Im marketing | Marketing, TI, Legal, Finanzas y Diseño" : "Im marketing | Marketing, IT, Legal, Finance and Design"}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+        <meta
+            name="description"
+            content={ locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México." : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico." }
+            />
+            <link rel="icon" href="/logo_svg.svg" />
+            <link rel="apple-touch-icon" href="https://immarketing.netlify.app/preview.jpg" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            <meta property="og:title" content= {
+              locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño" 
+              : "Immarketing | Marketing, IT, Legal, Finance and Design"
+              } />
+            <meta
+            property="og:description"
+            content={
+              locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
+              : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."
+            }
+            />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://immarketing.netlify.app/" />
+            <meta property="og:image" content="https://immarketing.netlify.app/preview.jpg" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño" : "Immarketing | Marketing, IT, Legal, Finance and Design"} />
+            <meta
+            name="twitter:description"
+            content={
+              locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
+              : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."
+            }
+            />
+            <meta name="twitter:image" content="https://immarketing.netlify.app/preview.jpg" />
+            <meta name="twitter:image:alt" content="Imkt Logo" />
+            <meta name="twitter:site" content="@imkt" />
+            <meta name="twitter:creator" content="@imkt" />
+
+            <meta name="keywords" content={locale == 'Es' ? "marketing, diseño, sitios web, legal, finanzas, audiovisual, redes sociales" : "marketing, design, websites, legal, finance, audiovisual, social media"} />
+      </Head>
+
+      <button aria-labelledby={locale == 'Es' ? 'Ancla a sección de Inicio' : 'Anchor to Home section'} aria-label={locale == 'Es' ? 'Ancla a sección de Inicio' : 'Anchor to Home section'}
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg transition-all ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
           } bg-[#8B4513] hover:bg-[#5C3317] text-white`}
-        aria-label="Back to top"
       >
         <svg
           className="w-6 h-6"
@@ -185,52 +260,75 @@ export default function Inicio() {
         </svg>
       </button>
 
-      {/* Header */}
       <header className="w-full flex justify-between items-center max-w-7xl mx-auto pt-6 px-6">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <Image src={"/logo_svg.png"} alt="Logo" width={100} height={50} />
-        </div>
+      {/* Logo */}
+      <div className="flex items-center space-x-2">
+        <Image src={"/logo_svg.png"} alt="Logo" width={100} height={50} />
+      </div>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <a aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a>
-          <a aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a>
-          <a aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a>
-          <a aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a>
-          <a aria-label='Ancla a sección de TI' href="#ti" className="hover:text-black">TI</a>
-          <a aria-label='Ancla a sección de Proyectos' href="#proyectos" className="hover:text-black">Proyectos</a>
-          <a aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a>
-          <a aria-label='Ancla a sección de Finanzas' href="#Finanzas" className="hover:text-black">Finanzas</a>
-          <a aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a>
-        </nav>
+      {/* Navigation */}
+      <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
+        <a href="#" className="hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a>
+        <a href="#marketing" className="hover:text-black">Marketing</a>
+        <a href="#audiovisual" className="hover:text-black">Audiovisual</a>
+        <a href="#grafico" className="hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a>
+        <a href="#ti" className="hover:text-black">TI</a>
+        <a href="#proyectos" className="hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a>
+        <a href="#legal" className="hover:text-black">Legal</a>
+        <a href="#Finanzas" className="hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a>
+        <a href="#contacto" className="hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a>
+      </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center space-x-4">
-          {/* Icono de menú hamburguesa */}
-          <button aria-label='Ancla a sección de Inicio' aria-labelledby='Ancla a sección de Inicio'
-            className="p-2"
-            onClick={() => setMenuOpen(!menuOpen)} // Cambiar el estado al abrir/cerrar el menú
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
+      {/* Language Switcher */}
+      <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
+        <select
+          value={locale}
+          onChange={(e) => setLocale(e.target.value)}
+          className="appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-150"
+          aria-label="Cambiar idioma"
+        >
+          <option value="Es">Español</option>
+          <option value="En">English</option>
+        </select>
+      </div>
+
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden flex items-center space-x-4">
+        <button
+          className="p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
 
       {/* Menú de navegación móvil */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 right-10 w-1/3 py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg z-50">
-          <a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">Inicio</a>
+        <div className="md:hidden absolute top-16 right-10 w-[40%] py-4 px-6 space-y-4 bg-orange-200 rounded-b-lg rounded-l-lg shadow-lg z-50">
+          <div className="text-gray-700 font-medium">
+            <select
+              value={locale}
+              onChange={(e) => setLocale(e.target.value)}
+              className="appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-150"
+              aria-label="Cambiar idioma"
+            >
+              <option value="Es">Español</option>
+              <option value="En">English</option>
+            </select>
+          </div>
+          <a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a>
           <a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="block text-gray-700 font-medium hover:text-black">Marketing</a>
           <a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="block text-gray-700 font-medium hover:text-black">Audiovisual</a>
-          <a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">Diseño</a>
+          <a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a>
           <a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI' href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
-          <a aria-labelledby='Ancla a sección de Proyectos' aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">Proyectos</a>
+          <a aria-labelledby='Ancla a sección de Proyectos' aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a>
           <a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
-          <a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">Finanzas</a>
-          <a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">Contacto</a>
+          <a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a>
+          <a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a>
         </div>
       )}
 
@@ -240,22 +338,43 @@ export default function Inicio() {
         {/* Left Content */}
         <div className="text-center md:text-left space-y-6 w-full md:w-1/2">
         <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black">
-        Agencia de marketing digital <br />
-        y soluciones que potencian tu{" "}
-          <span className="bg-black text-white px-2">negocio</span>
+        {locale == 'Es' ? 
+        <>
+          Agencia de marketing digital <br />
+          y soluciones que potencian tu{" "}
+            <span className="bg-black text-white px-2">negocio</span>
+        </> : 
+        <>
+          Digital marketing agency <br />
+          and solutions that enhance your{" "}
+            <span className="bg-black text-white px-2">business</span>
+        </>
+        }
         </h1>
 
         <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
-          Servicios con profesionistas de diversas áreas como: <br />
-          Finanzas, legal, TI, diseño gráfico y edición de video. <br />
-          Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
+          {
+          locale == 'Es' ?
+            <>
+            Servicios con profesionistas de diversas áreas como: <br />
+            Finanzas, legal, TI, diseño gráfico y edición de video. <br />
+            Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
+          </>
+          :
+          <>
+            Services with professionals from various areas such as: <br />
+            Finance, legal, IT, graphic design and video editing. <br />
+            All accompanied by the best strategy to optimize your business or company at the administrative, commercial or digital level.
+          </>
+          }
+
         </p>
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
             <button aria-label='Boton ancla a servicios' aria-labelledby='Boton ancla a servicios' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="relative z-10 text-black transition-colors duration-500 group-hover:text-white">
                 <a href="#marketing" aria-label='Ancla a sección de Contacto'>
-                  <span>¿Cómo te ayudamos?</span>
+                  <span>{locale == 'Es' ? 'Ver servicios' : 'See services'}</span>
                 </a>
               </span>
               <div className="absolute left-0 top-0 w-0 h-full bg-black transition-all duration-500 group-hover:w-full z-0"></div>
@@ -288,34 +407,41 @@ export default function Inicio() {
 
       <section className="py-16" id="marketing">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Marketing</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Marketing' : 'Marketing Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Impulsa tu negocio con estrategias efectivas
+            {locale == 'Es' ?
+            <>
+              Potencia tu negocio con estrategias de marketing
+            </> :
+            <>
+              Boost your business with marketing strategies 
+            </>
+            }
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Ofrecemos soluciones integrales de marketing para llevar tu negocio al siguiente nivel.
+            {locale == 'Es' ? 'Ofrecemos soluciones integrales de marketing para llevar tu negocio al siguiente nivel.' : 'We offer comprehensive marketing solutions to take your business to the next level.'}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {[
-              "Capacitaciones de marketing con tu tema de interés",
-              "Consultoría para la optimización de tu negocio",
-              "Reportes de análisis de competencia",
-              "Campañas en Meta Ads",
-              "Gestión de TikTok Studio",
-              "Campañas en Google Ads",
-              "Planeación de contenido para redes sociales",
-              "Reporte de impulso para tu negocio",
-              "SEO básico y complejo",
-              "Mejora de herramientas para medios de contacto",
-              "Apoyo en acuerdos comerciales"
+              locale == 'Es' ? 'Estrategia de Marketing Digital' : 'Digital Marketing Strategy',
+              locale == 'Es' ? 'Gestión de Redes Sociales' : 'Social Media Management',
+              locale == 'Es' ? 'Publicidad en Redes Sociales' : 'Social Media Advertising',
+              locale == 'Es' ? 'Creación de Contenido' : 'Content Creation',
+              locale == 'Es' ? 'SEO y SEM' : 'SEO and SEM',
+              locale == 'Es' ? 'Email Marketing' : 'Email Marketing',
+              locale == 'Es' ? 'Análisis de Datos' : 'Data Analysis',
+              locale == 'Es' ? 'Consultoría de Marketing' : 'Marketing Consulting',
+              locale == 'Es' ? 'Desarrollo de Marca' : 'Brand Development',
+              locale == 'Es' ? 'Gestión de Proyectos' : 'Project Management',
+              locale == 'Es' ? 'Investigación de Mercado' : 'Market Research',
             ].map((servicio, index) => (
               <div key={index} className="bg-white hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 shadow hover:shadow-xl transition-all">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">
                   {servicio}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Servicio personalizado según tus necesidades y objetivos de negocio.
+                  {locale == 'Es' ? 'Servicio personalizado según tus necesidades y objetivos de negocio.' : 'Personalized service according to your business needs and objectives.'}
                 </p>
               </div>
             ))}
@@ -323,9 +449,9 @@ export default function Inicio() {
 
           <div className="mt-12 bg-white hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 shadow hover:shadow-xl transition-all">
             <p className="text-md text-gray-700">
-              ¿Quieres algo diferente?
+              {locale == 'Es' ? '¿Quieres algo diferente?' : 'Do you want something different?'}
               <span className="block mt-2 font-medium text-blue-600">
-                Puedes crear tu propio paquete personalizado o contratar uno de los paquetes predefinidos.
+                {locale == 'Es' ? 'Puedes crear tu propio paquete personalizado o contratar uno de los paquetes predefinidos.' : 'You can create your own custom package or hire one of the predefined packages.'}
               </span>
             </p>
           </div>
@@ -335,12 +461,12 @@ export default function Inicio() {
 
       <section className="py-16" id="grafico">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Diseño Gráfico</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Diseño Gráfico' : 'Graphic Design Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Crea una diferencia con tu marca
+            {locale == 'Es' ? 'Diseño gráfico que impacta' : 'Graphic design that impacts'}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Diferencia tu marca con un diseño único y atractivo que resuene con tu audiencia.
+            {locale == 'Es' ? 'Diferencia tu marca con un diseño único y atractivo que resuene con tu audiencia.' : 'Differentiate your brand with a unique and attractive design that resonates with your audience.'}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -349,9 +475,9 @@ export default function Inicio() {
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-pen-ruler text-3xl text-green-600"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Logos</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Creación de Logos' : 'Logo Creation'}</h3>
               <p className="text-gray-600 text-sm">
-                Diseña un logotipo único que represente la esencia de tu marca.
+                {locale == 'Es' ? 'Diseña un logotipo único que represente la esencia de tu marca.' : 'Design a unique logo that represents the essence of your brand.'}
               </p>
             </div>
 
@@ -360,9 +486,9 @@ export default function Inicio() {
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-palette text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creación de Marca</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Creación de Marca' : 'Brand Creation'}</h3>
               <p className="text-gray-600 text-sm">
-                Desarrolla una identidad de marca sólida y coherente que resuene con tu audiencia y genere confianza.
+                {locale == 'Es' ? 'Desarrolla una identidad de marca sólida y coherente que resuene con tu audiencia y genere confianza.' : 'Develop a strong and consistent brand identity that resonates with your audience and builds trust.'}
               </p>
             </div>
 
@@ -370,9 +496,9 @@ export default function Inicio() {
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-ruler-combined text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño de Landing Page</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Diseño de Landing Page' : 'Landing Page Design'}</h3>
               <p className="text-gray-600 text-sm">
-                Crea páginas de destino atractivas y optimizadas para la conversión que impulsen el compromiso del usuario.
+                {locale == 'Es' ? 'Crea páginas de destino atractivas y optimizadas para la conversión que impulsen el compromiso del usuario.' : 'Create attractive and conversion-optimized landing pages that drive user engagement.'}
               </p>
             </div>
 
@@ -380,9 +506,9 @@ export default function Inicio() {
               <div className="bg-orange-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-rectangle-ad text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Diseño Publicitario</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Diseño Publicitario' : 'Advertising Design'}</h3>
               <p className="text-gray-600 text-sm">
-                Diseña anuncios atractivos y efectivos que capten la atención de tu audiencia y generen conversiones.
+                {locale == 'Es' ? 'Diseña anuncios atractivos y efectivos que capten la atención de tu audiencia y generen conversiones.' : 'Design attractive and effective ads that capture your audience\'s attention and generate conversions.'}
               </p>
             </div>
           </div>
@@ -391,12 +517,12 @@ export default function Inicio() {
       
       <section className="py-16" id="audiovisual">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios de Edición de Video</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Edición de Video' : 'Video Editing Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Creamos tu contenido audiovisual
+            {locale == 'Es' ? 'Creamos tu contenido audiovisual' : 'We create your audiovisual content'}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Mejora la calidad de tu contenido audiovisual con nuestros servicios de edición y producción.
+            {locale == 'Es' ? 'Mejora la calidad de tu contenido audiovisual con nuestros servicios de edición y producción.' : 'Enhance the quality of your audiovisual content with our editing and production services.'}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -405,9 +531,9 @@ export default function Inicio() {
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-video text-3xl text-green-600"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Edición de Video General</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Edición de Video General' : 'General Video Editing'}</h3>
               <p className="text-gray-600 text-sm">
-                Edición de videos para redes sociales, YouTube y otros formatos digitales.
+                {locale == 'Es' ? 'Edición de videos para redes sociales, YouTube y otros formatos digitales.' : 'Editing videos for social media, YouTube, and other digital formats.'}
               </p>
             </div>
 
@@ -416,9 +542,9 @@ export default function Inicio() {
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-film text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Postproducción Profesional</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Postproducción Profesional' : 'Professional Postproduction'}</h3>
               <p className="text-gray-600 text-sm">
-                Servicios de postproducción que incluyen corrección de color, efectos visuales y edición de sonido.
+                {locale == 'Es' ? 'Servicios de postproducción que incluyen corrección de color, efectos visuales y edición de sonido.' : 'Post-production services including color correction, visual effects, and sound editing.'}
               </p>
             </div>
 
@@ -426,9 +552,9 @@ export default function Inicio() {
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-calendar-days text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Eventos y Proyectos Personales</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Eventos y Proyectos Personales' : 'Events and Personal Projects'}</h3>
               <p className="text-gray-600 text-sm">
-                Eres un creador de contenido y necesitas ayuda con la edición de tus videos personales o de eventos.
+                {locale == 'Es' ? 'Eres un creador de contenido y necesitas ayuda con la edición de tus videos personales o de eventos.' : 'You are a content creator and need help editing your personal or event videos.'}
               </p>
             </div>
 
@@ -436,9 +562,9 @@ export default function Inicio() {
               <div className="bg-orange-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-photo-film text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Videos Corporativos y Educativos</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Videos Corporativos y Educativos' : 'Corporate and Educational Videos'}</h3>
               <p className="text-gray-600 text-sm">
-                Producción y edición de videos corporativos, tutoriales y contenido educativo.
+                {locale == 'Es' ? 'Producción y edición de videos corporativos, tutoriales y contenido educativo.' : 'Production and editing of corporate videos, tutorials, and educational content.'}
               </p>
             </div>
           </div>
@@ -447,12 +573,12 @@ export default function Inicio() {
 
       <section className="py-16" id="finanzas">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios Financieros</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios Financieros' : 'Financial Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Asesoría financiera para tu crecimiento
+            {locale == 'Es' ? 'Asesoría financiera para tu crecimiento' : 'Financial advice for your growth'}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Toma decisiones informadas y estratégicas sobre tu dinero con nuestra asesoría financiera personalizada.
+            {locale == 'Es' ? 'Toma decisiones informadas y estratégicas sobre tu dinero con nuestra asesoría financiera personalizada.' : 'Make informed and strategic decisions about your money with our personalized financial advice.'}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
@@ -460,9 +586,9 @@ export default function Inicio() {
               <div className="bg-blue-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-book-open text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Educación Financiera</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Educación Financiera' : 'Financial Education'}</h3>
               <p className="text-gray-600 text-sm">
-                Aprende a gestionar tu dinero, entender conceptos clave y mejorar tu salud financiera.
+                {locale == 'Es' ? 'Aprende a gestionar tu dinero, entender conceptos clave y mejorar tu salud financiera.' : 'Learn to manage your money, understand key concepts, and improve your financial health.'}
               </p>
             </div>
 
@@ -470,9 +596,9 @@ export default function Inicio() {
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-wallet text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Finanzas Personales</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Finanzas Personales' : 'Personal Finance'}</h3>
               <p className="text-gray-600 text-sm">
-                Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.
+                {locale == 'Es' ? 'Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.' : 'Organization of income, expenses, savings, and debts to achieve your personal goals.'}
               </p>
             </div>
 
@@ -480,9 +606,9 @@ export default function Inicio() {
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-chart-line text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Estrategias de Inversión</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Estrategias de Inversión' : 'Investment Strategies'}</h3>
               <p className="text-gray-600 text-sm">
-                Identifica oportunidades y aprende a invertir de forma inteligente y segura.
+                {locale == 'Es' ? 'Identifica oportunidades y aprende a invertir de forma inteligente y segura.' : 'Identify opportunities and learn to invest intelligently and safely.'}
               </p>
             </div>
 
@@ -490,9 +616,9 @@ export default function Inicio() {
               <div className="bg-purple-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-piggy-bank text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Productos Financieros</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Productos Financieros' : 'Financial Products'}</h3>
               <p className="text-gray-600 text-sm">
-                Conoce y compara productos como créditos, seguros, fondos, y cómo elegir el más conveniente.
+                {locale == 'Es' ? 'Conoce y compara productos como créditos, seguros, fondos, y cómo elegir el más conveniente.' : 'Know and compare products like loans, insurance, funds, and how to choose the most convenient one.'}
               </p>
             </div>
 
@@ -500,9 +626,9 @@ export default function Inicio() {
               <div className="bg-red-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-handshake-angle text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Acompañamiento en decisiones</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Acompañamiento en decisiones' : 'Support in decisions'}</h3>
               <p className="text-gray-600 text-sm">
-                Asistencia personalizada para evaluar decisiones financieras clave para tu negocio o vida personal.
+                {locale == 'Es' ? 'Asistencia personalizada para evaluar decisiones financieras clave para tu negocio o vida personal.' : 'Personalized assistance to evaluate key financial decisions for your business or personal life.'}
               </p>
             </div>
 
@@ -512,39 +638,40 @@ export default function Inicio() {
 
       <section className="py-16" id="legal">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios Legales</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios Legales' : 'Legal Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Asesoramiento legal para tu negocio
+            {locale == 'Es' ? 'Asesoramiento legal para tu negocio' : 'Legal advice for your business'}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Protege tu negocio con un asesoramiento legal sólido y profesional. No olvides que la prevención es la mejor defensa.
+            {locale == 'Es' ? 'Protege tu negocio con un asesoramiento legal sólido y profesional. No olvides que la prevención es la mejor defensa.' : 'Protect your business with solid and professional legal advice. Don\'t forget that prevention is the best defense.'}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
               <i className="fa-solid fa-scale-balanced text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Registro de Marca</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Registro de Marca' : 'Trademark Registration'}</h3>
               <p className="text-gray-600 text-sm">
-                Protege tu marca con un registro legal que garantice su exclusividad y derechos de uso.
+                {locale == 'Es' ? 'Protege tu marca con un registro legal que garantice su exclusividad y derechos de uso.' : 'Protect your brand with a legal registration that guarantees its exclusivity and usage rights.'}
               </p>
             </div>
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-file-contract text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Consultoria de Marketing Juridico</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Consultoria de Marketing Juridico' : 'Legal Marketing Consulting'}</h3>
               <p className="text-gray-600 text-sm">
-                Asesoría legal para campañas publicitarias que puedan tener riesgos legales (uso de testimonios, influencers, claims publicitarios).
+                {locale == 'Es' ? 'Asesoría legal para campañas publicitarias que puedan tener riesgos legales (uso de testimonios, influencers, claims publicitarios).' :
+                'Legal advice for advertising campaigns that may have legal risks (use of testimonials, influencers, advertising claims).'}
               </p>
             </div>
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-gavel text-3xl text-black"></i>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Defensa frente a infracciones de marca</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Defensa frente a infracciones de marca' : 'Defense against trademark infringements'}</h3>
               <p className="text-gray-600 text-sm">
-                Protección de tu marca frente a infracciones y uso indebido por parte de terceros.
+                {locale == 'Es' ? 'Protección de tu marca frente a infracciones y uso indebido por parte de terceros.' : 'Protection of your brand against infringements and misuse by third parties.'}
               </p>
             </div>
           </div>
@@ -553,12 +680,12 @@ export default function Inicio() {
 
       <section className="py-16" id="ti">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">Servicios TI</p>
+          <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios TI' : 'IT Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Soluciones de TI Completas
+            {locale == 'Es' ? 'Soluciones de TI Completas' : 'Complete IT Solutions'}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Soluciones personalizadas para optimizar procesos y mejorar la eficiencia.
+            {locale == 'Es' ? 'Soluciones personalizadas para optimizar procesos y mejorar la eficiencia.' : 'Customized solutions to optimize processes and improve efficiency.'}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -571,7 +698,7 @@ export default function Inicio() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Landing Pages</h3>
               <p className="text-gray-600 text-sm">
-                Creación de páginas de destino optimizadas para la conversión.
+                {locale == 'Es' ? 'Creación de páginas de destino optimizadas para la conversión.' : 'Creation of optimized landing pages for conversion.'}
               </p>
             </div>
 
@@ -581,7 +708,7 @@ export default function Inicio() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">E-Commerce</h3>
               <p className="text-gray-600 text-sm">
-                Desarrollo de tu comercio electrónico con Shopify para maximizar las ventas en línea.
+                {locale == 'Es' ? 'Desarrollo de tu comercio electrónico con Shopify para maximizar las ventas en línea.' : 'Development of your e-commerce with Shopify to maximize online sales.'}
               </p>
             </div>
             
@@ -592,7 +719,7 @@ export default function Inicio() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Blog</h3>
               <p className="text-gray-600 text-sm">
-                Creación de un blog optimizado para SEO que atraiga tráfico orgánico y genere leads.
+                {locale == 'Es' ? 'Creación de un blog optimizado para SEO que atraiga tráfico orgánico y genere leads.' : 'Creation of an SEO-optimized blog that attracts organic traffic and generates leads.'}
               </p>
             </div>
 
@@ -602,66 +729,24 @@ export default function Inicio() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Web Scraping</h3>
               <p className="text-gray-600 text-sm">
-                Extracción de datos de sitios web para análisis y toma de decisiones informadas.
+                {locale == 'Es' ? 'Extracción de datos de sitios web para análisis y toma de decisiones informadas.' : 'Data extraction from websites for analysis and informed decision-making.'}
               </p>
             </div>
           </div>
         </div>
       </section>
-
-      {/*<section className="py-12" id="testimonios">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-10">
-          <div className="flex-1">
-            <h4 className="text-sm font-semibold text-gray-700 mb-4">Resultados tangibles</h4>
-            <div className="flex items-center gap-2 mb-6 flex-wrap">
-              <img loading='lazy' src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" className="w-10 h-10 rounded-full" />
-              <img loading='lazy' src="https://randomuser.me/api/portraits/men/33.jpg" alt="Client 2" className="w-10 h-10 rounded-full" />
-              <img loading='lazy' src="https://randomuser.me/api/portraits/men/34.jpg" alt="Client 3" className="w-10 h-10 rounded-full" />
-              <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">0k</div>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-black"> 
-              Testimonios de clientes <br/><span className="bg-black text-white px-2">satisfechos</span>
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-8">
-              Conoce lo que empresarios y emprendedores dicen sobre I´m Marketing y 
-              descubre como la complementación de nuestros servicios se han acoplado 
-              a sus necesidades, presupuestos y proyecciones. 
-            </p>
-          </div>
-
-          <div className="flex-1 flex flex-col gap-6">
-            <div className="border rounded-lg p-6 shadow-md hover:shadow-lg transition bg-white">
-              <p className="text-lg mb-4 text-black">
-                Solicite el diseño de un sitio web y una estrategia de marketing digital
-                para su empresa. El equipo de Seom fue muy profesional y cumplió con todas
-                nuestras expectativas. ¡Recomiendo encarecidamente sus servicios!
-              </p>
-              <div className="flex items-center justify-between border-t pt-4">
-                <div className="flex items-center gap-3">
-                  <img loading='lazy' src="https://randomuser.me/api/portraits/women/42.jpg" alt="Olivia Martinez" className="w-8 h-8 rounded-full" />
-                  <span className="font-semibold text-gray-800">Olivia Martinez</span>
-                </div>
-                <div className="flex gap-1 text-orange-500">
-                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      */}
 
       <section className="py-16" id="proyectos">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-black"> {/* Adjusted size */}
-            Proyectos que marcan la diferencia
+            {locale == 'Es' ? 'Proyectos que marcan la diferencia' : 'Projects that make a difference'}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mb-12">
-            Estos son algunos de nuestros proyectos destacados que reflejan nuestro compromiso con la calidad y la innovación.
+            {locale == 'Es' ? 'Estos son algunos de nuestros proyectos destacados que reflejan nuestro compromiso con la calidad y la innovación.' : 'These are some of our highlighted projects that reflect our commitment to quality and innovation.'}
             <br />
-            Cada proyecto es una oportunidad para aprender y crecer, y estamos orgullosos de compartir estos logros con ustedes.
+            {locale == 'Es' ? 'Cada proyecto es una oportunidad para aprender y crecer, y estamos orgullosos de compartir estos logros con ustedes.' : 'Each project is an opportunity to learn and grow, and we are proud to share these achievements with you.'}
             <br />
-            <span className="font-semibold text-orange-500">¡Descubre cómo podemos ayudarte a alcanzar tus metas!</span>
+            <span className="font-semibold text-orange-500">{locale == 'Es' ? '¡Descubre cómo podemos ayudarte a alcanzar tus metas!' : 'Discover how we can help you achieve your goals!'}</span>
             <br />
           </p>
 
@@ -671,21 +756,21 @@ export default function Inicio() {
               <div className="text-5xl text-orange-500 mb-6">
                 <i className="fas fa-chart-line"></i>
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-black">Proyecto RealtyManager</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-black">{locale == 'Es' ? 'Proyecto RealtyManager' : 'Project RealtyManager'}</h3>
               <p className="text-gray-600 mb-6">
-                Sitio web de gestión inmobiliaria, diseñado para facilitar la administración de propiedades y clientes.
+                {locale == 'Es' ? 'Sitio web de gestión inmobiliaria, diseñado para facilitar la administración de propiedades y clientes.' : 'Real estate management website, designed to facilitate property and client management.'}
               </p>
               <button className="text-orange-500 font-semibold hover:underline" onClick={() => window
-                .open("https://dev-mini-crm.netlify.app/", "_blank")}>Ver sitio</button>
+                .open("https://dev-mini-crm.netlify.app/", "_blank")}>{locale == 'Es' ? 'Ver sitio' : 'View site'}</button>
             </div>
 
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black bg-white rounded-lg shadow-md p-8 hover:shadow-xl transition">
               <div className="text-5xl text-orange-500 mb-6">
                 <i className="fa-solid fa-file-lines"></i>
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-black">Web Scraper de Productos Deportivos</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-black">{locale == 'Es' ? 'Web Scraper de Productos Deportivos' : 'Sports Products Web Scraper'}</h3>
               <p className="text-gray-600 mb-6">
-                Herramienta de scraping que permite a un sitio web alimentar su base de datos con productos deportivos de diferentes proveedores.
+                {locale == 'Es' ? 'Herramienta de scraping que permite a un sitio web alimentar su base de datos con productos deportivos de diferentes proveedores.' : 'Scraping tool that allows a website to feed its database with sports products from different suppliers.'}
               </p>
               <button className="text-orange-500 font-semibold hover:underline" onClick={() =>
                 Swal.fire({
@@ -695,26 +780,26 @@ export default function Inicio() {
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr>
-                            <th style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">Producto</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">Precio</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Descripción</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">${locale == 'Es' ? 'Producto' : 'Product'}</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">${locale == 'Es' ? 'Precio' : 'Price'}</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Descripción' : 'Description'}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Bola de fútbol</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Bola de fútbol' : 'Soccer Ball'}</td>
                             <td style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">$25.99</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Bola de fútbol oficial para partidos.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Bola de fútbol oficial para partidos.' : 'Official soccer ball for matches.'}</td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Raqueta de tenis</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Raqueta de tenis' : 'Tennis Racket'}</td>
                             <td style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">$59.99</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Raqueta ligera de alta calidad para jugadores profesionales.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Raqueta ligera de alta calidad para jugadores profesionales.' : 'Lightweight high-quality racket for professional players.'}</td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Camiseta deportiva</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Camiseta deportiva' : 'Sports Shirt'}</td>
                             <td style="border: 1px solid #ddd; padding: 8px; min-width: 100px;">$19.99</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Camiseta deportiva de material transpirable, ideal para entrenamientos.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${locale == 'Es' ? 'Camiseta deportiva de material transpirable, ideal para entrenamientos.' : 'Breathable sports shirt, ideal for training.'}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -730,10 +815,10 @@ export default function Inicio() {
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-black">E-commerce</h3>
               <p className="text-gray-600 mb-6">
-                E-commerce diseñado en Shopify diseñado y alimentado con un inventario de productos de diferentes proveedores.
+                {locale == 'Es' ? 'E-commerce diseñado en Shopify diseñado y alimentado con un inventario de productos de diferentes proveedores.' : 'E-commerce designed in Shopify and fed with an inventory of products from different suppliers.'}
               </p>
               <button className="text-orange-500 font-semibold hover:underline" onClick={() => window
-                .open("https://safediconceptstore.com/", "_blank")}>Ver sitio</button>
+                .open("https://safediconceptstore.com/", "_blank")}>{locale == 'Es' ? 'Ver sitio' : 'View site'}</button>
             </div>
           </div>
         </div>
@@ -743,17 +828,18 @@ export default function Inicio() {
       <section className="py-16" id="contacto">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Contáctanos
+            {locale == 'Es' ? 'Contáctanos' : 'Contact Us'}
           </h2>
           <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            Déjanos tus datos y un asesor especializado o un experto en el área adecuada 
-            se pondrá en contacto contigo para ayudarte a encontrar la solución perfecta para impulsar tu negocio.
+           {locale == 'Es' ? ` Déjanos tus datos y un asesor especializado o un experto en el área adecuada 
+            se pondrá en contacto contigo para ayudarte a encontrar la solución perfecta para impulsar tu negocio.` :
+            `Leave us your details and a specialized advisor or an expert in the right area will contact you to help you find the perfect solution to boost your business.`}
           </p>
 
           <div className="border border-b-4 border-b-black border-r-4 border-black border-r-black max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
             <div className="max-w-xl mx-auto">
               <div className="mb-4">
-                <label htmlFor="nombre" className="block text-gray-700 font-semibold mb-2">Nombre</label>
+                <label htmlFor="nombre" className="block text-gray-700 font-semibold mb-2">{locale == 'Es' ? 'Nombre' : 'Name'}</label>
                 <input
                   type="text"
                   id="nombre"
@@ -765,7 +851,7 @@ export default function Inicio() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Correo Electrónico</label>
+                <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -777,7 +863,7 @@ export default function Inicio() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="servicio" className="block text-gray-700 font-semibold mb-2">Servicio a solicitar</label>
+                <label htmlFor="servicio" className="block text-gray-700 font-semibold mb-2">{locale == 'Es' ? 'Servicio a solicitar' : 'Service to request'}</label>
                 <select
                   id="servicio"
                   value={servicio}
@@ -785,19 +871,18 @@ export default function Inicio() {
                   className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 >
-                  <option value="">Selecciona una opción</option>
+                  <option value="">{locale == 'Es' ? 'Selecciona un servicio' : 'Select a service'}</option>
                   <option value="Marketing">Marketing</option>
                   <option value="Audiovisual">Audiovisual</option>
-                  <option value="Diseño">Diseño</option>
+                  <option value="Diseño">{locale == 'Es' ? 'Diseño' : 'Design'}</option>
                   <option value="TI">TI</option>
-                  <option value="Proyectos">Proyectos</option>
                   <option value="Legal">Legal</option>
-                  <option value="Finanzas">Finanzas</option>
-                  <option value="No sé mi servicio">No sé mi servicio</option>
+                  <option value="Finanzas">{locale == 'Es' ? 'Finanzas' : 'Finance'}</option>
+                  <option value="No sé mi servicio">{locale == 'Es' ? 'No sé mi servicio' : 'I don\'t know my service'}</option>
                 </select>
               </div>
               <div className="mb-4">
-                <label htmlFor="mensaje" className="block text-gray-700 font-semibold mb-2">Mensaje</label>
+                <label htmlFor="mensaje" className="block text-gray-700 font-semibold mb-2">{locale == 'Es' ? 'Mensaje' : 'Message'}</label>
                 <textarea
                   id="mensaje"
                   value={mensaje}
@@ -811,21 +896,21 @@ export default function Inicio() {
               <button onClick={handleSubmit}  aria-label='Boton enviar formulario' aria-labelledby='Boton enviar formulario' 
                 className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition"
               >
-                Enviar Solicitud
+                {locale == 'Es' ? 'Enviar Solicitud' : 'Send Request'}
               </button>
             </div>
 
             {/* WhatsApp option */}
             <div className="mt-6 text-center">
-              <p className="text-gray-600 mb-2">¿Prefieres una atención más ágil?</p>
+              <p className="text-gray-600 mb-2">{locale == 'Es' ? 'O contáctanos directamente por WhatsApp:' : 'Or contact us directly via WhatsApp:'}</p>
               <a
-                href="https://wa.me/5218701440979?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20acerca%20de%20los%20servicios%20que%20ofrecen"
+                href={locale == 'Es' ? 'https://wa.me/5218711167745?text=Hola,%20me%20interesa%20el%20servicio%20de%20IMKT' : 'https://wa.me/5218711167745?text=Hello,%20I%20am%20interested%20in%20the%20service%20of%20IMKT'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-500 text-white px-5 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
               >
                 <i className="fab fa-whatsapp text-xl"></i>
-                Escríbenos por WhatsApp
+                {locale == 'Es' ? 'Escríbenos por WhatsApp' : 'Write to us on WhatsApp'}
               </a>
             </div>
           </div>
@@ -841,7 +926,7 @@ export default function Inicio() {
               <Image src={"/logo_svg.svg"} alt="Logo" width={100} height={50} />
             </div>
             <p className="text-gray-600 mt-2 text-base">
-              Somos una agencia de marketing digital dedicada a ayudar a las empresas a crecer y prosperar en el mundo digital.
+              {locale == 'Es' ? 'Somos una agencia de marketing digital dedicada a ayudar a las empresas a crecer y prosperar en el mundo digital.' : 'We are a digital marketing agency dedicated to helping businesses grow and thrive in the digital world.'}
             </p>
           </div>
 
@@ -849,25 +934,25 @@ export default function Inicio() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-black">Indice</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">Inicio</a></li>
+              <li><a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a></li>
               <li><a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a></li>
               <li><a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a></li>
-              <li><a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">Diseño</a></li>
+              <li><a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a></li>
               <li><a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI'  href="#ti" className="hover:text-black">TI</a></li>
-              <li><a aria-labelledby='Ancla a sección de Proyecto' aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">Proyectos</a></li>
+              <li><a aria-labelledby='Ancla a sección de Proyecto' aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a></li>
               <li><a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a></li>
-              <li><a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">Finanzas</a></li>
-              <li><a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">Contacto</a></li>
+              <li><a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a></li>
+              <li><a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a></li>
             </ul>
           </div>
 
           {/* Información de contacto */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-black">Contacto</h3>
+            <h3 className="text-lg font-semibold mb-4 text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</h3>
             <ul className="space-y-2 text-gray-600">
               <li>imkt-digital@imkt.com</li>
               <li>+52 871-116-7745</li>
-              <li>Oficina Virtual</li>
+              <li>{locale == 'Es' ? 'Oficina Virtual' : 'Virtual Office'}</li>
             </ul>
           </div>
         </div>
@@ -875,7 +960,7 @@ export default function Inicio() {
         {/* Línea divisoria */}
         <div className="border-t mt-12 pt-6">
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-500 flex gap-2 items-center">© IMPULSADOS POR 
+            <div className="text-gray-500 flex gap-2 items-center">© {locale == 'Es' ? 'IMPULSADOS POR ' : 'DRIVEN BY '}
               <i className="fa-brands fa-react text-2xl text-blue-400"></i>
               <i className="fa-brands fa-js text-2xl text-amber-300"></i> 
               <i className="fa-brands fa-html5 text-2xl text-red-400"></i>
