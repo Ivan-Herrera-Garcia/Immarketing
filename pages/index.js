@@ -23,7 +23,7 @@ export default function Inicio() {
     };
 
     handleLocaleChange();
-  }, [router.locale, locale]);
+  }, [locale]);
 
   useEffect(() => {
     const toggleVisibility = () => {
