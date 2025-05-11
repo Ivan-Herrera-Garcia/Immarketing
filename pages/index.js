@@ -13,17 +13,10 @@ export default function Inicio() {
   const [locale, setLocale] = useState(router.locale || 'Es');
 
   useEffect(() => {
-    const handleLocaleChange = () => {
-      if (locale === 'Es') {
-        router.push(router.pathname, router.asPath, { locale: 'Es' });
-      } else
-      if (locale === 'En') {
-        router.push(router.pathname, router.asPath, { locale: 'En' });
-      }
-    };
-
-    handleLocaleChange();
-  }, [locale]);
+  if (router.locale !== locale) {
+    router.push(router.pathname, router.asPath, { locale });
+  }
+}, [locale, router]);
 
   useEffect(() => {
     const toggleVisibility = () => {
