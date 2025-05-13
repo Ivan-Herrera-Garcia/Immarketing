@@ -585,15 +585,81 @@ export default function Inicio() {
               </p>
             </div>
 
-            <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
-              <div className="bg-green-100 p-4 rounded-full mb-4">
-                <i className="fa-solid fa-wallet text-3xl text-black"></i>
+            <div className="relative">
+                {/* Toggle modal */}
+                <input hidden type="checkbox" id="finance-modal" className="peer" />
+
+                {/* Card (clickable area) */}
+                <label htmlFor="finance-modal" className="relative cursor-pointer hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+
+                  {/* Animated Corner Icon */}
+                  <div className="absolute top-2 right-2 text-orange-500 animate-bounce-slow">
+                    <i className="fa-solid fa-circle-info text-xl"></i>
+                  </div>
+
+                  {/* Main Icon */}
+                  <div className="bg-green-100 p-4 rounded-full mb-4">
+                    <i className="fa-solid fa-wallet text-3xl text-black"></i>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {locale == 'Es' ? 'Finanzas Personales' : 'Personal Finance'}
+                  </h3>
+
+                  <p className="text-gray-600 text-sm">
+                    {locale == 'Es'
+                      ? 'Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.'
+                      : 'Organization of income, expenses, savings, and debts to achieve your personal goals.'}
+                  </p>
+
+                </label>
+
+
+                {/* Modal Overlay */}
+                <label htmlFor="finance-modal" className="modal-overlay fixed top-0 right-0 bottom-0 left-0 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 peer-checked:opacity-100 peer-checked:pointer-events-auto flex items-center justify-center">
+                  {/* Modal Content */}
+                  <div className="modal bg-white rounded-2xl p-0 overflow-hidden transform transition-transform duration-300 -translate-y-10 peer-checked:translate-y-0 max-w-3xl w-full shadow-2xl flex flex-col md:flex-row">
+                    
+                    {/* Left: Image */}
+                    <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                      <Image src="/Finanzas.jpg" alt="Asesor Finanzas" layout="fill" objectFit="cover" className="rounded-l-2xl md:rounded-l-2xl" />
+                    </div>
+                    
+                    {/* Right: Info */}
+                    <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
+                      <div  className='gap-4 flex flex-col'>
+                        <h5 className="text-2xl font-bold mb-4">Asesor Financiero</h5>
+                        <p className="text-gray-700 mb-4">
+                          Yair Montiel es nuestro experto en finanzas personales, especializado en ayudarte a organizar tus ingresos, gastos y ahorros para lograr tus metas.
+                        </p>
+                          <a
+                            href="mailto:asesoria@ymfinanzas.com?subject=Consulta%20de%20servicios&body=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios%20financieros."
+                            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+                          >
+                            <i className="fa-solid fa-envelope text-xl"></i>
+                            asesoria@ymfinanzas.com
+                          </a>
+                          
+                          <a
+                          href="https://wa.me/526144057630?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20de%20tus%20servicios."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+                        >
+                          <i className="fa-brands fa-whatsapp text-xl"></i>
+                          WhatsApp
+                        </a>
+                      </div>
+
+                      {/* Close Button */}
+                      <label htmlFor="finance-modal" className="self-end mt-4 cursor-pointer text-gray-500 hover:text-black text-xl" aria-label="Close modal">
+                        ×
+                      </label>
+                    </div>
+
+                  </div>
+                </label>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Finanzas Personales' : 'Personal Finance'}</h3>
-              <p className="text-gray-600 text-sm">
-                {locale == 'Es' ? 'Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.' : 'Organization of income, expenses, savings, and debts to achieve your personal goals.'}
-              </p>
-            </div>
 
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">

@@ -44,3 +44,12 @@ button {
   right: 0;
   background: linear-gradient(to left, white, transparent);
 }
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s infinite;
+}
