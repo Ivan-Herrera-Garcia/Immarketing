@@ -114,7 +114,6 @@ export default function Inicio() {
     const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje} ${locale == 'Es' ? 'Español' : 'English'}`;
 
     try {
-      try {
         const response = await fetch('/api/crear-tarea', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -165,9 +164,7 @@ export default function Inicio() {
             text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
           });
         }
-      } catch (error) {
-        console.error('Error desde el cliente:', error);
-      }
+     
     } catch (error) {
       console.error('Error:', error);
       // alert('Hubo un error al enviar el formulario.');

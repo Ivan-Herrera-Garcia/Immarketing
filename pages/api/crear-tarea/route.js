@@ -1,7 +1,6 @@
 export async function POST(request) {
     const body = await request.json();
     const { contenido } = body;
-  
     try {
       const respuesta = await fetch('https://frontdoor-prod-us-east-2-1.clickup.com/tasks/v1/subcategory/901311341091/task', {
         method: 'POST',
