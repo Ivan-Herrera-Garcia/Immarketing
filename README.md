@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🟢 Immarketing - Landing Page
+Bienvenido al repositorio oficial de la Landing Page de Immarketing, la agencia especializada en estrategias de marketing digital y desarrollo web a la medida.
 
-## Getting Started
+🌐 Sitio web en producción: https://immarketing.agency
 
-First, run the development server:
+📋 Descripción
+Este proyecto es una Landing Page corporativa diseñada para presentar los servicios, proyectos y filosofía de la agencia Immarketing. Su objetivo es atraer clientes potenciales y fortalecer la presencia online de la empresa.
 
-```bash
+🛠️ Tecnologías utilizadas
+HTML5 / CSS3
+
+JavaScript
+
+Tailwind CSS (o Bootstrap, según stack)
+
+Next.js (si aplica SSR)
+
+Vercel / Netlify (despliegue)
+
+SEO Optimizado (metatags, OpenGraph, schema.org)
+
+📦 Estructura del Proyecto
+plaintext
+Copiar
+Editar
+/public       -> Imágenes, favicons, assets estáticos
+/src
+  /components -> Componentes reutilizables (Navbar, Footer, Hero)
+  /pages      -> Páginas (Home, Contacto, Servicios)
+  /styles     -> Archivos de estilos globales
+/README.md
+/package.json
+🚀 Despliegue local
+Clonar el repositorio:
+
+bash
+Copiar
+Editar
+git clone https://github.com/tu-usuario/immarketing.git
+cd immarketing
+Instalar dependencias:
+
+bash
+Copiar
+Editar
+npm install
+Iniciar servidor de desarrollo:
+
+bash
+Copiar
+Editar
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Abrir en navegador:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+arduino
+Copiar
+Editar
+http://localhost:3000
+🎯 Funcionalidades destacadas
+Presentación de servicios de marketing digital y desarrollo web.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Sección de proyectos anteriores y casos de éxito.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Formulario de contacto para captación de leads.
 
-## Learn More
+Diseño responsive adaptado a móviles.
 
-To learn more about Next.js, take a look at the following resources:
+Optimización SEO básica.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📄 Licencia
+Este proyecto es de uso privado y pertenece a Immarketing. No se permite su uso o reproducción sin autorización.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🤝 Contacto
+🌐 Sitio web: immarketing.agency
