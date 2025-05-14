@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router'
 import Head from 'next/head';
@@ -11,6 +11,32 @@ export default function Inicio() {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const [locale, setLocale] = useState(router.locale || 'Es');
+  const sections = ['audiovisual', 'marketing', 'grafico', 'ti', 'proyectos', 'legal', 'finanzas', 'contacto'];
+  const sectionRefs = useRef(sections.map(() => null));
+
+  const scrollToSection = (index) => (e) => {
+    e.preventDefault();
+    const target = sectionRefs.current[index];
+    if (!target) return;
+
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800; // ajustar velocidad
+    let start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const percent = Math.min(progress / duration, 1);
+      window.scrollTo(0, startPosition + distance * percent);
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  };
 
   useEffect(() => {
   if (router.locale !== locale) {
@@ -258,15 +284,30 @@ export default function Inicio() {
 
       {/* Navigation */}
       <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <a href="#" className="hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a>
-        <a href="#marketing" className="hover:text-black">Marketing</a>
-        <a href="#audiovisual" className="hover:text-black">Audiovisual</a>
-        <a href="#grafico" className="hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a>
-        <a href="#ti" className="hover:text-black">TI</a>
-        <a href="#proyectos" className="hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a>
-        <a href="#legal" className="hover:text-black">Legal</a>
-        <a href="#Finanzas" className="hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a>
-        <a href="#contacto" className="hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a>
+        <a href="#" onClick={scrollToSection(0)} className="hover:text-black">
+          {locale == 'Es' ? 'Audiovisual' : 'Audiovisual'}
+        </a>
+        <a href="#" onClick={scrollToSection(1)} className="hover:text-black">
+          Marketing
+        </a>
+        <a href="#" onClick={scrollToSection(2)} className="hover:text-black">
+          {locale == 'Es' ? 'Diseño' : 'Design'}
+        </a>
+        <a href="#" onClick={scrollToSection(3)} className="hover:text-black">
+          TI
+        </a>
+        <a href="#" onClick={scrollToSection(4)} className="hover:text-black">
+          {locale == 'Es' ? 'Proyectos' : 'Projects'}
+        </a>
+        <a href="#" onClick={scrollToSection(5)} className="hover:text-black">
+          Legal
+        </a>
+        <a href="#" onClick={scrollToSection(6)} className="hover:text-black">
+          {locale == 'Es' ? 'Finanzas' : 'Finance'}
+        </a>
+        <a href="#" onClick={scrollToSection(7)} className="hover:text-black">
+          {locale == 'Es' ? 'Contacto' : 'Contact'}
+        </a>
       </nav>
 
       {/* Language Switcher */}
@@ -310,15 +351,86 @@ export default function Inicio() {
               <option value="En">English</option>
             </select>
           </div>
-          <a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a>
-          <a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="block text-gray-700 font-medium hover:text-black">Marketing</a>
-          <a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="block text-gray-700 font-medium hover:text-black">Audiovisual</a>
-          <a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a>
-          <a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI' href="#ti" className="block text-gray-700 font-medium hover:text-black">TI</a>
-          <a aria-labelledby='Ancla a sección de Proyectos' aria-label='Ancla a sección de Proyectos' href="#proyectos" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a>
-          <a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="block text-gray-700 font-medium hover:text-black">Legal</a>
-          <a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a>
-          <a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="block text-gray-700 font-medium hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a>
+
+          <a
+            aria-labelledby="Ancla a sección de Marketing"
+            aria-label="Ancla a sección de Marketing"
+            href="#"
+            onClick={scrollToSection(1)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            Marketing
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Audiovisual"
+            aria-label="Ancla a sección de Audiovisual"
+            href="#"
+            onClick={scrollToSection(0)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            Audiovisual
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Diseño"
+            aria-label="Ancla a sección de Diseño"
+            href="#"
+            onClick={scrollToSection(2)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            {locale == 'Es' ? 'Diseño' : 'Design'}
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de TI"
+            aria-label="Ancla a sección de TI"
+            href="#"
+            onClick={scrollToSection(3)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            TI
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Proyectos"
+            aria-label="Ancla a sección de Proyectos"
+            href="#"
+            onClick={scrollToSection(4)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            {locale == 'Es' ? 'Proyectos' : 'Projects'}
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Legal"
+            aria-label="Ancla a sección de Legal"
+            href="#"
+            onClick={scrollToSection(5)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            Legal
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Finanzas"
+            aria-label="Ancla a sección de Finanzas"
+            href="#"
+            onClick={scrollToSection(6)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            {locale == 'Es' ? 'Finanzas' : 'Finance'}
+          </a>
+
+          <a
+            aria-labelledby="Ancla a sección de Contacto"
+            aria-label="Ancla a sección de Contacto"
+            href="#"
+            onClick={scrollToSection(7)}
+            className="block text-gray-700 font-medium hover:text-black"
+          >
+            {locale == 'Es' ? 'Contacto' : 'Contact'}
+          </a>
         </div>
       )}
 
@@ -395,7 +507,7 @@ export default function Inicio() {
         </div>
       </main>
 
-      <section className="py-16" id="marketing">
+      <section ref={(el) => (sectionRefs.current[1] = el)} className="py-16" id="marketing">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Marketing' : 'Marketing Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -449,7 +561,7 @@ export default function Inicio() {
       </section>
 
 
-      <section className="py-16" id="grafico">
+      <section ref={(el) => (sectionRefs.current[2] = el)} className="py-16" id="grafico">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Diseño Gráfico' : 'Graphic Design Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -505,7 +617,7 @@ export default function Inicio() {
         </div>
       </section>
       
-      <section className="py-16" id="audiovisual">
+      <section ref={(el) => (sectionRefs.current[0] = el)} className="py-16" id="audiovisual">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Edición de Video' : 'Video Editing Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -561,7 +673,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="py-16" id="finanzas">
+      <section ref={(el) => (sectionRefs.current[6] = el)} className="py-16" id="finanzas">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios Financieros' : 'Financial Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -692,7 +804,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="py-16" id="legal">
+      <section ref={(el) => (sectionRefs.current[5] = el)} className="py-16" id="legal">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios Legales' : 'Legal Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -734,7 +846,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="py-16" id="ti">
+      <section ref={(el) => (sectionRefs.current[3] = el)} className="py-16" id="ti">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios TI' : 'IT Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
@@ -792,7 +904,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      <section className="py-16" id="proyectos">
+      <section ref={(el) => (sectionRefs.current[4] = el)} className="py-16" id="proyectos">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-black"> {/* Adjusted size */}
             {locale == 'Es' ? 'Proyectos que marcan la diferencia' : 'Projects that make a difference'}
@@ -881,7 +993,7 @@ export default function Inicio() {
       </section>
 
       {/* FORMULARIO */}
-      <section className="py-16" id="contacto">
+      <section ref={(el) => (sectionRefs.current[7] = el)} className="py-16" id="contacto">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             {locale == 'Es' ? 'Contáctanos' : 'Contact Us'}
@@ -990,16 +1102,107 @@ export default function Inicio() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-black">Indice</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a aria-labelledby='Ancla a sección de Inicio' aria-label='Ancla a sección de Inicio' href="#" className="hover:text-black">{locale == 'Es' ? 'Inicio' : 'Home'}</a></li>
-              <li><a aria-labelledby='Ancla a sección de Marketing' aria-label='Ancla a sección de Marketing' href="#marketing" className="hover:text-black">Marketing</a></li>
-              <li><a aria-labelledby='Ancla a sección de Audiovisual' aria-label='Ancla a sección de Audiovisual' href="#audiovisual" className="hover:text-black">Audiovisual</a></li>
-              <li><a aria-labelledby='Ancla a sección de Diseño' aria-label='Ancla a sección de Diseño' href="#grafico" className="hover:text-black">{locale == 'Es' ? 'Diseño' : 'Design'}</a></li>
-              <li><a aria-labelledby='Ancla a sección de TI' aria-label='Ancla a sección de TI'  href="#ti" className="hover:text-black">TI</a></li>
-              <li><a aria-labelledby='Ancla a sección de Proyecto' aria-label='Ancla a sección de Proyecto' href="#proyectos" className="hover:text-black">{locale == 'Es' ? 'Proyectos' : 'Projects'}</a></li>
-              <li><a aria-labelledby='Ancla a sección de Legal' aria-label='Ancla a sección de Legal' href="#legal" className="hover:text-black">Legal</a></li>
-              <li><a aria-labelledby='Ancla a sección de Finanzas' aria-label='Ancla a sección de Finanzas' href="#finanzas" className="hover:text-black">{locale == 'Es' ? 'Finanzas' : 'Finance'}</a></li>
-              <li><a aria-labelledby='Ancla a sección de Contacto' aria-label='Ancla a sección de Contacto' href="#contacto" className="hover:text-black">{locale == 'Es' ? 'Contacto' : 'Contact'}</a></li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Inicio"
+                  aria-label="Ancla a sección de Inicio"
+                  onClick={() => scrollToSection(0)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  {locale == 'Es' ? 'Inicio' : 'Home'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Marketing"
+                  aria-label="Ancla a sección de Marketing"
+                  onClick={() => scrollToSection(1)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  Marketing
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Audiovisual"
+                  aria-label="Ancla a sección de Audiovisual"
+                  onClick={() => scrollToSection(2)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  Audiovisual
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Diseño"
+                  aria-label="Ancla a sección de Diseño"
+                  onClick={() => scrollToSection(3)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  {locale == 'Es' ? 'Diseño' : 'Design'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de TI"
+                  aria-label="Ancla a sección de TI"
+                  onClick={() => scrollToSection(4)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  TI
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Proyecto"
+                  aria-label="Ancla a sección de Proyecto"
+                  onClick={() => scrollToSection(5)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  {locale == 'Es' ? 'Proyectos' : 'Projects'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Legal"
+                  aria-label="Ancla a sección de Legal"
+                  onClick={() => scrollToSection(6)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  Legal
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Finanzas"
+                  aria-label="Ancla a sección de Finanzas"
+                  onClick={() => scrollToSection(7)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  {locale == 'Es' ? 'Finanzas' : 'Finance'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  aria-labelledby="Ancla a sección de Contacto"
+                  aria-label="Ancla a sección de Contacto"
+                  onClick={() => scrollToSection(8)}
+                  className="hover:text-black cursor-pointer"
+                >
+                  {locale == 'Es' ? 'Contacto' : 'Contact'}
+                </a>
+              </li>
             </ul>
+
           </div>
 
           {/* Información de contacto */}
