@@ -39,10 +39,10 @@ export default function Inicio() {
   };
 
   useEffect(() => {
-  if (router.locale !== locale) {
-    router.push(router.pathname, router.asPath, { locale });
-  }
-}, [locale, router]);
+    if (router.locale !== locale) {
+      router.push(router.pathname, router.asPath, { locale });
+    }
+  }, [locale, router]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -75,6 +75,7 @@ export default function Inicio() {
   }), [menuOpen]; // Dependencia para el efecto
 
   const [nombre, setNombre] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [servicio, setServicio] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -82,6 +83,7 @@ export default function Inicio() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    var error = false;
 
     if (nombre.length < 3) {
       Swal.fire({
@@ -89,6 +91,16 @@ export default function Inicio() {
         title: 'Error',
         text: locale == 'Es' ? 'El nombre debe tener al menos 3 caracteres.' : 'Name must be at least 3 characters long.',
       });
+      error = true;
+    }
+
+    if (phone.length < 7) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: locale == 'Es' ? 'El número de teléfono debe tener al menos 10 caracteres.' : 'Phone number must be at least 10 characters long.',
+      });
+      error = true;
     }
 
     if (email.length < 3) {
@@ -97,6 +109,7 @@ export default function Inicio() {
         title: 'Error',
         text: locale == 'Es' ? 'El email debe tener al menos 3 caracteres.' : 'Email must be at least 3 characters long.',
       });
+      error = true;
     }
 
     if (!email.includes("@")) {
@@ -105,6 +118,7 @@ export default function Inicio() {
         title: 'Error',
         text: locale == 'Es' ? 'El email debe contener un "@"' : 'Email must contain an "@"',
       });
+      error = true;
     }
 
     if (mensaje.length < 3) {
@@ -113,9 +127,10 @@ export default function Inicio() {
         title: 'Error',
         text: locale == 'Es' ? 'El mensaje debe tener al menos 3 caracteres.' : 'Message must be at least 3 characters long.',
       });
+      error = true;
     }
 
-    if (formularioEnviado) {
+    if (formularioEnviado || error) {
       return;
     } else {
       const Toast = Swal.mixin({
@@ -137,60 +152,60 @@ export default function Inicio() {
     }
 
     setFormularioEnviado(true);
-    const contenido = `Nombre: ${nombre}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje} ${locale == 'Es' ? 'Español' : 'English'}`;
+    const contenido = `Nombre: ${nombre}\nNumero: ${phone}\nEmail: ${email}\nServicio: ${servicio}\nMensaje: ${mensaje} - Idioma seleccionado: ${locale == 'Es' ? 'Español' : 'English'}`;
 
     try {
-        const response = await fetch('/api/crear-tarea', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contenido })
+      const response = await fetch('/api/crear-tarea', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contenido })
+      });
+
+      const resultado = await response.json();
+      console.log('Tarea creada:', resultado);
+      console.log('Response:', response);
+
+      if (response.ok) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
         });
-    
-        const resultado = await response.json();
-        console.log('Tarea creada:', resultado);
-        console.log('Response:', response);
-  
-        if (response.ok) {
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-          });
-          Toast.fire({
-            icon: "success",
-            title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
-            text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
-          });
-          setFormularioEnviado(false);
-          setNombre('');
-          setEmail('');
-          setServicio('');
-          setMensaje('');
-        } else {
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-          });
-          Toast.fire({
-            icon: "info",
-            title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
-            text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
-          });
-        }
-     
+        Toast.fire({
+          icon: "success",
+          title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
+          text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
+        });
+        setFormularioEnviado(false);
+        setNombre('');
+        setEmail('');
+        setServicio('');
+        setMensaje('');
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "info",
+          title: locale == 'Es' ? "¡Formulario enviado!" : "Form sent!",
+          text: locale == 'Es' ? "Nos pondremos en contacto contigo pronto." : "We will contact you soon.",
+        });
+      }
+
     } catch (error) {
       console.error('Error:', error);
       // alert('Hubo un error al enviar el formulario.');
@@ -221,43 +236,43 @@ export default function Inicio() {
         <title>{locale == 'Es' ? "Im marketing | Marketing, TI, Legal, Finanzas y Diseño" : "Im marketing | Marketing, IT, Legal, Finance and Design"}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
         <meta
-            name="description"
-            content={ locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México." : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico." }
-            />
-            <link rel="icon" href="/logo_svg.svg" />
-            <link rel="apple-touch-icon" href="https://immarketing.netlify.app/preview.jpg" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            
-            <meta property="og:title" content= {
-              locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño" 
-              : "Immarketing | Marketing, IT, Legal, Finance and Design"
-              } />
-            <meta
-            property="og:description"
-            content={
-              locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
-              : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."
-            }
-            />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://immarketing.netlify.app/" />
-            <meta property="og:image" content="https://immarketing.netlify.app/preview.jpg" />
+          name="description"
+          content={locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México." : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."}
+        />
+        <link rel="icon" href="/logo_svg.svg" />
+        <link rel="apple-touch-icon" href="https://immarketing.netlify.app/preview.jpg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño" : "Immarketing | Marketing, IT, Legal, Finance and Design"} />
-            <meta
-            name="twitter:description"
-            content={
-              locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
+        <meta property="og:title" content={
+          locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño"
+            : "Immarketing | Marketing, IT, Legal, Finance and Design"
+        } />
+        <meta
+          property="og:description"
+          content={
+            locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
               : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."
-            }
-            />
-            <meta name="twitter:image" content="https://immarketing.netlify.app/preview.jpg" />
-            <meta name="twitter:image:alt" content="Imkt Logo" />
-            <meta name="twitter:site" content="@imkt" />
-            <meta name="twitter:creator" content="@imkt" />
+          }
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://immarketing.netlify.app/" />
+        <meta property="og:image" content="https://immarketing.netlify.app/preview.jpg" />
 
-            <meta name="keywords" content={locale == 'Es' ? "marketing, diseño, sitios web, legal, finanzas, audiovisual, redes sociales" : "marketing, design, websites, legal, finance, audiovisual, social media"} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={locale == 'Es' ? "Immarketing | Marketing, TI, Legal, Finanzas y Diseño" : "Immarketing | Marketing, IT, Legal, Finance and Design"} />
+        <meta
+          name="twitter:description"
+          content={
+            locale == 'Es' ? "Servicios de marketing, TI, legal, finanzas, diseño y audiovisual. En Imkt potenciamos tu empresa con soluciones personalizadas desde Torreón, México."
+              : "Marketing, IT, legal, finance, design and audiovisual services. At Imkt we enhance your company with personalized solutions from Torreón, Mexico."
+          }
+        />
+        <meta name="twitter:image" content="https://immarketing.netlify.app/preview.jpg" />
+        <meta name="twitter:image:alt" content="Imkt Logo" />
+        <meta name="twitter:site" content="@imkt" />
+        <meta name="twitter:creator" content="@imkt" />
+
+        <meta name="keywords" content={locale == 'Es' ? "marketing, diseño, sitios web, legal, finanzas, audiovisual, redes sociales" : "marketing, design, websites, legal, finance, audiovisual, social media"} />
       </Head>
 
       <button aria-labelledby={locale == 'Es' ? 'Ancla a sección de Inicio' : 'Anchor to Home section'} aria-label={locale == 'Es' ? 'Ancla a sección de Inicio' : 'Anchor to Home section'}
@@ -277,65 +292,65 @@ export default function Inicio() {
       </button>
 
       <header className="w-full flex justify-between items-center max-w-7xl mx-auto pt-6 px-6">
-      {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <Image src={"/logo_svg.png"} alt="Logo" width={100} height={50} />
-      </div>
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <Image src={"/logo_svg.png"} alt="Logo" width={100} height={50} />
+        </div>
 
-      {/* Navigation */}
-      <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <a href="#" onClick={scrollToSection(0)} className="hover:text-black">
-          {locale == 'Es' ? 'Audiovisual' : 'Audiovisual'}
-        </a>
-        <a href="#" onClick={scrollToSection(1)} className="hover:text-black">
-          Marketing
-        </a>
-        <a href="#" onClick={scrollToSection(2)} className="hover:text-black">
-          {locale == 'Es' ? 'Diseño' : 'Design'}
-        </a>
-        <a href="#" onClick={scrollToSection(3)} className="hover:text-black">
-          TI
-        </a>
-        <a href="#" onClick={scrollToSection(4)} className="hover:text-black">
-          {locale == 'Es' ? 'Proyectos' : 'Projects'}
-        </a>
-        <a href="#" onClick={scrollToSection(5)} className="hover:text-black">
-          Legal
-        </a>
-        <a href="#" onClick={scrollToSection(6)} className="hover:text-black">
-          {locale == 'Es' ? 'Finanzas' : 'Finance'}
-        </a>
-        <a href="#" onClick={scrollToSection(7)} className="hover:text-black">
-          {locale == 'Es' ? 'Contacto' : 'Contact'}
-        </a>
-      </nav>
+        {/* Navigation */}
+        <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
+          <a href="#" onClick={scrollToSection(0)} className="hover:text-black">
+            {locale == 'Es' ? 'Audiovisual' : 'Audiovisual'}
+          </a>
+          <a href="#" onClick={scrollToSection(1)} className="hover:text-black">
+            Marketing
+          </a>
+          <a href="#" onClick={scrollToSection(2)} className="hover:text-black">
+            {locale == 'Es' ? 'Diseño' : 'Design'}
+          </a>
+          <a href="#" onClick={scrollToSection(3)} className="hover:text-black">
+            TI
+          </a>
+          <a href="#" onClick={scrollToSection(4)} className="hover:text-black">
+            {locale == 'Es' ? 'Proyectos' : 'Projects'}
+          </a>
+          <a href="#" onClick={scrollToSection(5)} className="hover:text-black">
+            Legal
+          </a>
+          <a href="#" onClick={scrollToSection(6)} className="hover:text-black">
+            {locale == 'Es' ? 'Finanzas' : 'Finance'}
+          </a>
+          <a href="#" onClick={scrollToSection(7)} className="hover:text-black">
+            {locale == 'Es' ? 'Contacto' : 'Contact'}
+          </a>
+        </nav>
 
-      {/* Language Switcher */}
-      <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <select
-          value={locale}
-          onChange={(e) => setLocale(e.target.value)}
-          className="appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-150"
-          aria-label="Cambiar idioma"
-        >
-          <option value="Es">Español</option>
-          <option value="En">English</option>
-        </select>
-      </div>
+        {/* Language Switcher */}
+        <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
+          <select
+            value={locale}
+            onChange={(e) => setLocale(e.target.value)}
+            className="appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-150"
+            aria-label="Cambiar idioma"
+          >
+            <option value="Es">Español</option>
+            <option value="En">English</option>
+          </select>
+        </div>
 
 
-      {/* Mobile Menu Button */}
-      <div className="md:hidden flex items-center space-x-4">
-        <button
-          className="p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </header>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center space-x-4">
+          <button
+            className="p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </header>
 
       {/* Menú de navegación móvil */}
       {menuOpen && (
@@ -439,38 +454,38 @@ export default function Inicio() {
       <main className="flex flex-col-reverse md:flex-row items-center gap-12 max-w-7xl mx-auto row-start-2">
         {/* Left Content */}
         <div className="text-center md:text-left space-y-6 w-full md:w-1/2">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black">
-        {locale == 'Es' ? 
-        <>
-          Agencia de marketing digital <br />
-          y soluciones que potencian tu{" "}
-            <span className="bg-black text-white px-2">negocio</span>
-        </> : 
-        <>
-          Digital marketing agency <br />
-          and solutions that enhance your{" "}
-            <span className="bg-black text-white px-2">business</span>
-        </>
-        }
-        </h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black">
+            {locale == 'Es' ?
+              <>
+                Agencia de marketing digital <br />
+                y soluciones que potencian tu{" "}
+                <span className="bg-black text-white px-2">negocio</span>
+              </> :
+              <>
+                Digital marketing agency <br />
+                and solutions that enhance your{" "}
+                <span className="bg-black text-white px-2">business</span>
+              </>
+            }
+          </h1>
 
-        <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
-          {
-          locale == 'Es' ?
-            <>
-            Servicios con profesionistas de diversas áreas como: <br />
-            Finanzas, legal, TI, diseño gráfico y edición de video. <br />
-            Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
-          </>
-          :
-          <>
-            Services with professionals from various areas such as: <br />
-            Finance, legal, IT, graphic design and video editing. <br />
-            All accompanied by the best strategy to optimize your business or company at the administrative, commercial or digital level.
-          </>
-          }
+          <p className="mt-4 text-base sm:text-lg md:text-xl text-black">
+            {
+              locale == 'Es' ?
+                <>
+                  Servicios con profesionistas de diversas áreas como: <br />
+                  Finanzas, legal, TI, diseño gráfico y edición de video. <br />
+                  Todo acompañado de la mejor estrategia para optimizar tu negocio o empresa a nivel administrativo, comercial o digital.
+                </>
+                :
+                <>
+                  Services with professionals from various areas such as: <br />
+                  Finance, legal, IT, graphic design and video editing. <br />
+                  All accompanied by the best strategy to optimize your business or company at the administrative, commercial or digital level.
+                </>
+            }
 
-        </p>
+          </p>
           {/* Buttons */}
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mt-6">
             <button aria-label='Boton ancla a servicios' aria-labelledby='Boton ancla a servicios' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
@@ -481,7 +496,7 @@ export default function Inicio() {
               </span>
               <div className="absolute left-0 top-0 w-0 h-full bg-black transition-all duration-500 group-hover:w-full z-0"></div>
             </button>
-            <button  aria-label='Boton ancla a contacto' aria-labelledby='Boton ancla a contacto' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
+            <button aria-label='Boton ancla a contacto' aria-labelledby='Boton ancla a contacto' className="relative overflow-hidden border-2 border-black px-6 py-3 rounded-full font-bold group">
               <span className="flex relative z-10 text-black transition-colors duration-500 group-hover:text-white">
                 <a href="#contacto" aria-label='Ancla a sección de Contacto'>
                   <span>Contáctanos</span>
@@ -512,12 +527,12 @@ export default function Inicio() {
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Marketing' : 'Marketing Services'}</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             {locale == 'Es' ?
-            <>
-              Potencia tu negocio con estrategias de marketing
-            </> :
-            <>
-              Boost your business with marketing strategies 
-            </>
+              <>
+                Potencia tu negocio con estrategias de marketing
+              </> :
+              <>
+                Boost your business with marketing strategies
+              </>
             }
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
@@ -550,12 +565,14 @@ export default function Inicio() {
           </div>
 
           <div className="mt-12 bg-white hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 shadow hover:shadow-xl transition-all">
-            <p className="text-md text-gray-700">
-              {locale == 'Es' ? '¿Quieres algo diferente?' : 'Do you want something different?'}
-              <span className="block mt-2 font-medium text-blue-600">
-                {locale == 'Es' ? 'Puedes crear tu propio paquete personalizado o contratar uno de los paquetes predefinidos.' : 'You can create your own custom package or hire one of the predefined packages.'}
-              </span>
-            </p>
+            <a href="#" onClick={scrollToSection(7)} className="hover:text-black">
+              <p className="text-md text-gray-700 hover:cursor-pointer">
+                {locale == 'Es' ? '¿Quieres algo diferente?' : 'Do you want something different?'}
+                <span className="block mt-2 font-medium text-blue-600">
+                  {locale == 'Es' ? 'Puedes crear tu propio paquete personalizado o contratar uno de los paquetes predefinidos.' : 'You can create your own custom package or hire one of the predefined packages.'}
+                </span>
+              </p>
+            </a>
           </div>
         </div>
       </section>
@@ -616,7 +633,7 @@ export default function Inicio() {
           </div>
         </div>
       </section>
-      
+
       <section ref={(el) => (sectionRefs.current[0] = el)} className="py-16" id="audiovisual">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm font-semibold text-orange-500 uppercase mb-3">{locale == 'Es' ? 'Servicios de Edición de Video' : 'Video Editing Services'}</p>
@@ -683,7 +700,7 @@ export default function Inicio() {
             {locale == 'Es' ? 'Toma decisiones informadas y estratégicas sobre tu dinero con nuestra asesoría financiera personalizada.' : 'Make informed and strategic decisions about your money with our personalized financial advice.'}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-blue-100 p-4 rounded-full mb-4">
                 <i className="fa-solid fa-book-open text-3xl text-black"></i>
@@ -695,80 +712,80 @@ export default function Inicio() {
             </div>
 
             <div className="relative">
-                {/* Toggle modal */}
-                <input hidden type="checkbox" id="finance-modal" className="peer" />
+              {/* Toggle modal */}
+              <input hidden type="checkbox" id="finance-modal" className="peer" />
 
-                {/* Card (clickable area) */}
-                <label htmlFor="finance-modal" className="relative cursor-pointer hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
+              {/* Card (clickable area) */}
+              <label htmlFor="finance-modal" className="relative cursor-pointer hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
 
-                  {/* Animated Corner Icon */}
-                  <div className="absolute top-2 right-2 text-orange-500 animate-bounce-slow">
-                    <i className="fa-solid fa-circle-info text-xl"></i>
+                {/* Animated Corner Icon */}
+                <div className="absolute top-2 right-2 text-orange-500 animate-bounce-slow">
+                  <i className="fa-solid fa-circle-info text-xl"></i>
+                </div>
+
+                {/* Main Icon */}
+                <div className="bg-green-100 p-4 rounded-full mb-4">
+                  <i className="fa-solid fa-wallet text-3xl text-black"></i>
+                </div>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {locale == 'Es' ? 'Finanzas Personales' : 'Personal Finance'}
+                </h3>
+
+                <p className="text-gray-600 text-sm">
+                  {locale == 'Es'
+                    ? 'Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.'
+                    : 'Organization of income, expenses, savings, and debts to achieve your personal goals.'}
+                </p>
+
+              </label>
+
+
+              {/* Modal Overlay */}
+              <label htmlFor="finance-modal" className="modal-overlay fixed top-0 right-0 bottom-0 left-0 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 peer-checked:opacity-100 peer-checked:pointer-events-auto flex items-center justify-center">
+                {/* Modal Content */}
+                <div className="modal bg-white rounded-2xl p-0 overflow-hidden transform transition-transform duration-300 -translate-y-10 peer-checked:translate-y-0 max-w-3xl w-full shadow-2xl flex flex-col md:flex-row">
+
+                  {/* Left: Image */}
+                  <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                    <Image src="/Finanzas.jpg" alt="Asesor Finanzas" layout="fill" objectFit="cover" className="rounded-l-2xl md:rounded-l-2xl" />
                   </div>
 
-                  {/* Main Icon */}
-                  <div className="bg-green-100 p-4 rounded-full mb-4">
-                    <i className="fa-solid fa-wallet text-3xl text-black"></i>
-                  </div>
+                  {/* Right: Info */}
+                  <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
+                    <div className='gap-4 flex flex-col'>
+                      <h5 className="text-2xl font-bold mb-4">Asesor Financiero</h5>
+                      <p className="text-gray-700 mb-4">
+                        Yair Montiel es nuestro experto en finanzas personales, especializado en ayudarte a organizar tus ingresos, gastos y ahorros para lograr tus metas.
+                      </p>
+                      <a
+                        href="mailto:asesoria@ymfinanzas.com?subject=Consulta%20de%20servicios&body=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios%20financieros."
+                        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+                      >
+                        <i className="fa-solid fa-envelope text-xl"></i>
+                        asesoria@ymfinanzas.com
+                      </a>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {locale == 'Es' ? 'Finanzas Personales' : 'Personal Finance'}
-                  </h3>
-
-                  <p className="text-gray-600 text-sm">
-                    {locale == 'Es'
-                      ? 'Organización de ingresos, gastos, ahorros y deudas para lograr tus metas personales.'
-                      : 'Organization of income, expenses, savings, and debts to achieve your personal goals.'}
-                  </p>
-
-                </label>
-
-
-                {/* Modal Overlay */}
-                <label htmlFor="finance-modal" className="modal-overlay fixed top-0 right-0 bottom-0 left-0 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 peer-checked:opacity-100 peer-checked:pointer-events-auto flex items-center justify-center">
-                  {/* Modal Content */}
-                  <div className="modal bg-white rounded-2xl p-0 overflow-hidden transform transition-transform duration-300 -translate-y-10 peer-checked:translate-y-0 max-w-3xl w-full shadow-2xl flex flex-col md:flex-row">
-                    
-                    {/* Left: Image */}
-                    <div className="w-full md:w-1/2 h-64 md:h-auto relative">
-                      <Image src="/Finanzas.jpg" alt="Asesor Finanzas" layout="fill" objectFit="cover" className="rounded-l-2xl md:rounded-l-2xl" />
-                    </div>
-                    
-                    {/* Right: Info */}
-                    <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
-                      <div  className='gap-4 flex flex-col'>
-                        <h5 className="text-2xl font-bold mb-4">Asesor Financiero</h5>
-                        <p className="text-gray-700 mb-4">
-                          Yair Montiel es nuestro experto en finanzas personales, especializado en ayudarte a organizar tus ingresos, gastos y ahorros para lograr tus metas.
-                        </p>
-                          <a
-                            href="mailto:asesoria@ymfinanzas.com?subject=Consulta%20de%20servicios&body=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios%20financieros."
-                            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg transition"
-                          >
-                            <i className="fa-solid fa-envelope text-xl"></i>
-                            asesoria@ymfinanzas.com
-                          </a>
-                          
-                          <a
-                          href="https://wa.me/526144057630?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20de%20tus%20servicios."
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition"
-                        >
-                          <i className="fa-brands fa-whatsapp text-xl"></i>
-                          WhatsApp
-                        </a>
-                      </div>
-
-                      {/* Close Button */}
-                      <label htmlFor="finance-modal" className="self-end mt-4 cursor-pointer text-gray-500 hover:text-black text-xl" aria-label="Close modal">
-                        ×
-                      </label>
+                      <a
+                        href="https://wa.me/526144057630?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20de%20tus%20servicios."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+                      >
+                        <i className="fa-brands fa-whatsapp text-xl"></i>
+                        WhatsApp
+                      </a>
                     </div>
 
+                    {/* Close Button */}
+                    <label htmlFor="finance-modal" className="self-end mt-4 cursor-pointer text-gray-500 hover:text-black text-xl" aria-label="Close modal">
+                      ×
+                    </label>
                   </div>
-                </label>
-              </div>
+
+                </div>
+              </label>
+            </div>
 
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-yellow-100 p-4 rounded-full mb-4">
@@ -816,7 +833,7 @@ export default function Inicio() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-purple-100 p-4 rounded-full mb-4">
-              <i className="fa-solid fa-scale-balanced text-3xl text-black"></i>
+                <i className="fa-solid fa-scale-balanced text-3xl text-black"></i>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Registro de Marca' : 'Trademark Registration'}</h3>
               <p className="text-gray-600 text-sm">
@@ -830,7 +847,7 @@ export default function Inicio() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{locale == 'Es' ? 'Consultoria de Marketing Juridico' : 'Legal Marketing Consulting'}</h3>
               <p className="text-gray-600 text-sm">
                 {locale == 'Es' ? 'Asesoría legal para campañas publicitarias que puedan tener riesgos legales (uso de testimonios, influencers, claims publicitarios).' :
-                'Legal advice for advertising campaigns that may have legal risks (use of testimonials, influencers, advertising claims).'}
+                  'Legal advice for advertising campaigns that may have legal risks (use of testimonials, influencers, advertising claims).'}
               </p>
             </div>
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black  rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
@@ -879,7 +896,7 @@ export default function Inicio() {
                 {locale == 'Es' ? 'Desarrollo de tu comercio electrónico con Shopify para maximizar las ventas en línea.' : 'Development of your e-commerce with Shopify to maximize online sales.'}
               </p>
             </div>
-            
+
 
             <div className="hover:border-b-orange-500 hover:border-orange-500 border border-b-4 border-b-black border-r-4 border-black border-r-black rounded-2xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center bg-white">
               <div className="bg-green-100 p-4 rounded-full mb-4">
@@ -999,9 +1016,9 @@ export default function Inicio() {
             {locale == 'Es' ? 'Contáctanos' : 'Contact Us'}
           </h2>
           <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-           {locale == 'Es' ? ` Déjanos tus datos y un asesor especializado o un experto en el área adecuada 
+            {locale == 'Es' ? ` Déjanos tus datos y un asesor especializado o un experto en el área adecuada 
             se pondrá en contacto contigo para ayudarte a encontrar la solución perfecta para impulsar tu negocio.` :
-            `Leave us your details and a specialized advisor or an expert in the right area will contact you to help you find the perfect solution to boost your business.`}
+              `Leave us your details and a specialized advisor or an expert in the right area will contact you to help you find the perfect solution to boost your business.`}
           </p>
 
           <div className="border border-b-4 border-b-black border-r-4 border-black border-r-black max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -1014,7 +1031,19 @@ export default function Inicio() {
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Tu nombre"
+                  placeholder={locale == 'Es' ? "Tu nombre" : "Your name"}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">{locale == 'Es' ? 'Número de teléfono' : 'Phone Number'}</label>
+                <input
+                  type="text"
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder={locale == 'Es' ? "Tu número de teléfono" : "Your phone number"}
                   required
                 />
               </div>
@@ -1026,7 +1055,7 @@ export default function Inicio() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Tu correo electrónico"
+                  placeholder={locale == 'Es' ? "Tu correo electrónico" : "Your email"}
                   required
                 />
               </div>
@@ -1057,11 +1086,11 @@ export default function Inicio() {
                   onChange={(e) => setMensaje(e.target.value)}
                   rows={4}
                   className="text-gray-700 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Escribe tu mensaje aquí..."
+                  placeholder={locale == 'Es' ? "Escribe tu mensaje aquí..." : "Write your message here..."}
                   required
                 />
               </div>
-              <button onClick={handleSubmit}  aria-label='Boton enviar formulario' aria-labelledby='Boton enviar formulario' 
+              <button onClick={handleSubmit} aria-label='Boton enviar formulario' aria-labelledby='Boton enviar formulario'
                 className="bg-[#FC9A37] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e88a2e] transition"
               >
                 {locale == 'Es' ? 'Enviar Solicitud' : 'Send Request'}
@@ -1072,7 +1101,7 @@ export default function Inicio() {
             <div className="mt-6 text-center">
               <p className="text-gray-600 mb-2">{locale == 'Es' ? 'O contáctanos directamente por WhatsApp:' : 'Or contact us directly via WhatsApp:'}</p>
               <a
-                href={locale == 'Es' ? 'https://wa.me/5218711167745?text=Hola,%20me%20interesa%20el%20servicio%20de%20IMKT' : 'https://wa.me/5218711167745?text=Hello,%20I%20am%20interested%20in%20the%20service%20of%20IMKT'}
+                href={locale == 'Es' ? 'https://wa.me/8701440979?text=Hola,%20me%20interesa%20el%20servicio%20de%20IMKT' : 'https://wa.me/8701440979?text=Hello,%20I%20am%20interested%20in%20the%20service%20of%20IMKT'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-500 text-white px-5 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
@@ -1221,7 +1250,7 @@ export default function Inicio() {
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-500 flex gap-2 items-center">© {locale == 'Es' ? 'IMPULSADOS POR ' : 'DRIVEN BY '}
               <i className="fa-brands fa-react text-2xl text-blue-400"></i>
-              <i className="fa-brands fa-js text-2xl text-amber-300"></i> 
+              <i className="fa-brands fa-js text-2xl text-amber-300"></i>
               <i className="fa-brands fa-html5 text-2xl text-red-400"></i>
               <i className="fa-brands fa-css3 text-2xl text-blue-400"></i>
             </div>
